@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHK MVP of the Quarter</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--maroon:#7F1D1D;--maroon2:#991B1B;--gold:#F59E0B;--gold2:#FCD34D;--dark:#0A0A0A;--dark2:#141414;--dark3:#1E1E1E;--muted:#888;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Barlow',sans-serif;background:var(--dark);color:#F5F5F0;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 20% 0%,rgba(127,29,29,.35) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 0%,rgba(245,158,11,.15) 0%,transparent 60%),radial-gradient(ellipse 80% 60% at 50% 100%,rgba(127,29,29,.2) 0%,transparent 60%);}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 40px,rgba(255,255,255,.012) 40px,rgba(255,255,255,.012) 41px);}
+.hero{position:relative;z-index:1;text-align:center;padding:56px 24px 48px;border-bottom:1px solid rgba(255,255,255,.06);}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;opacity:0;animation:fadeUp .6s .1s forwards;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,11vw,110px);line-height:.9;letter-spacing:2px;color:#fff;margin-bottom:6px;opacity:0;animation:fadeUp .6s .2s forwards;}
+.hero h1 .accent{color:var(--gold);}
+.hero h1 .outline{-webkit-text-stroke:2px rgba(255,255,255,.3);color:transparent;}
+.hero-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:15px;color:rgba(255,255,255,.45);letter-spacing:1.5px;font-style:italic;margin-bottom:24px;opacity:0;animation:fadeUp .6s .3s forwards;}
+.status-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:8px 20px;border-radius:100px;font-size:13px;color:rgba(255,255,255,.7);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;opacity:0;animation:fadeUp .6s .4s forwards;}
+.status-pill .dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;animation:pulse 2s infinite;}
+.status-pill .dot.off{background:#EF4444;animation:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.terms-row{position:relative;z-index:1;display:flex;justify-content:center;gap:12px;padding:28px 24px 0;flex-wrap:wrap;}
+.term-badge{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border:1px solid rgba(255,255,255,.1);border-radius:4px;color:rgba(255,255,255,.35);}
+.term-badge.active{border-color:var(--gold);color:var(--gold);background:rgba(245,158,11,.08);}
+.tabs{position:relative;z-index:1;display:flex;justify-content:center;gap:6px;padding:28px 24px 0;flex-wrap:wrap;}
+.tab{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border:1.5px solid rgba(255,255,255,.12);border-radius:4px;background:transparent;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;}
+.tab:hover{border-color:var(--gold);color:var(--gold);}
+.tab.active{background:var(--maroon);color:#fff;border-color:var(--maroon2);box-shadow:0 0 20px rgba(127,29,29,.5);}
+.section-header{position:relative;z-index:1;text-align:center;padding:36px 24px 8px;}
+.section-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,46px);letter-spacing:3px;color:#fff;}
+.section-header h2 span{color:var(--gold);}
+.section-header p{font-size:14px;color:var(--muted);margin-top:4px;}
+.closed-banner{display:none;position:relative;z-index:1;max-width:680px;margin:24px auto 0;background:rgba(127,29,29,.2);border:1px solid rgba(127,29,29,.4);border-radius:8px;padding:16px 24px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;color:rgba(255,100,100,.9);}
+.grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:20px;max-width:1100px;margin:0 auto;padding:32px 24px 64px;}
+.card{position:relative;cursor:pointer;transition:transform .25s;animation:cardIn .5s both;}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.card:hover{transform:translateY(-6px) scale(1.03);}
+.jersey{position:relative;background:linear-gradient(160deg,var(--maroon) 0%,#5A0F0F 100%);border-radius:12px;overflow:hidden;padding-bottom:4px;box-shadow:0 4px 20px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);}
+.jersey::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:50%;height:22px;background:var(--dark2);border-radius:0 0 40px 40px;z-index:2;}
+.jersey-number{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:90px;color:rgba(255,255,255,.04);pointer-events:none;z-index:1;line-height:1;user-select:none;}
+.jersey-stripes{position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(90deg,var(--gold) 0,var(--gold) 20px,var(--maroon2) 20px,var(--maroon2) 40px);opacity:.7;}
+.card[data-cat="library"] .jersey{background:linear-gradient(160deg,#1E3A5F 0%,#0F2040 100%);}
+.card[data-cat="library"] .jersey-stripes{background:repeating-linear-gradient(90deg,#3B82F6 0,#3B82F6 20px,#1E3A5F 20px,#1E3A5F 40px);}
+.card[data-cat="acadsupport"] .jersey{background:linear-gradient(160deg,#064E3B 0%,#022C22 100%);}
+.card[data-cat="acadsupport"] .jersey-stripes{background:repeating-linear-gradient(90deg,#10B981 0,#10B981 20px,#064E3B 20px,#064E3B 40px);}
+.card[data-cat="pt"] .jersey{background:linear-gradient(160deg,#4C1D95 0%,#2E1065 100%);}
+.card[data-cat="pt"] .jersey-stripes{background:repeating-linear-gradient(90deg,#8B5CF6 0,#8B5CF6 20px,#4C1D95 20px,#4C1D95 40px);}
+.card-photo-wrap{position:relative;width:100%;aspect-ratio:1;overflow:hidden;z-index:2;}
+.card-photo-wrap img{width:100%;height:100%;object-fit:cover;transition:filter .4s,transform .3s;display:block;}
+.card:hover .card-photo-wrap img{transform:scale(1.06);}
+.card.benched .card-photo-wrap img{filter:grayscale(100%) brightness(.35);}
+.card-tip{display:none;position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:12px;line-height:1.5;padding:10px 14px;border-radius:8px;width:190px;text-align:center;z-index:20;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.card-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark3);}
+.card:hover .card-tip{display:block;}
+.card-footer{padding:10px 12px 12px;position:relative;z-index:2;}
+.card-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;line-height:1.1;}
+.card-role{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;}
+.card-section-tag{display:inline-block;margin-top:5px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);}
+.pick-btn{width:100%;margin-top:8px;padding:7px 0;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold);color:var(--dark);border:none;border-radius:4px;cursor:pointer;transition:background .2s,transform .1s;}
+.pick-btn:hover{background:var(--gold2);transform:scale(1.02);}
+.pick-btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.3);cursor:not-allowed;transform:none;}
+.card.nominated .jersey{box-shadow:0 0 0 2px var(--gold),0 0 30px rgba(245,158,11,.4),0 4px 20px rgba(0,0,0,.5);}
+.mvp-badge{display:none;position:absolute;top:28px;right:-4px;background:var(--gold);color:var(--dark);font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1px;padding:3px 10px 3px 8px;z-index:10;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,8% 50%);}
+.card.nominated .mvp-badge{display:block;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--dark2);border:1px solid rgba(255,255,255,.08);border-radius:16px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);animation:modalIn .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes modalIn{from{opacity:0;transform:scale(.85) translateY(30px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-top{background:linear-gradient(135deg,var(--maroon) 0%,#3D0000 100%);padding:28px;display:flex;gap:18px;align-items:center;position:relative;border-bottom:3px solid var(--gold);}
+.modal-top::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 21px);}
+.modal-avatar{width:72px;height:72px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;position:relative;z-index:1;flex-shrink:0;}
+.modal-info{position:relative;z-index:1;}
+.modal-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.modal-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;line-height:1;}
+.modal-role{font-size:13px;color:rgba(255,255,255,.5);margin-top:2px;}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;}
+.modal-close:hover{background:rgba(255,255,255,.2);color:#fff;}
+.modal-body{padding:24px 28px;}
+.modal-body label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.modal-body textarea{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:#fff;resize:vertical;min-height:90px;outline:none;transition:border-color .2s;}
+.modal-body textarea:focus{border-color:var(--gold);}
+.modal-body textarea::placeholder{color:rgba(255,255,255,.2);}
+.modal-hint{font-size:11px;color:var(--muted);margin-top:6px;}
+.modal-footer{display:flex;gap:10px;padding:0 28px 28px;}
+.btn-cancel{flex:1;padding:12px;background:transparent;border:1.5px solid rgba(255,255,255,.12);border-radius:6px;color:rgba(255,255,255,.4);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .2s;}
+.btn-cancel:hover{border-color:rgba(255,255,255,.3);color:#fff;}
+.btn-submit{flex:2;padding:12px;background:var(--gold);color:var(--dark);border:none;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;transition:all .2s;}
+.btn-submit:hover{background:var(--gold2);transform:scale(1.02);}
+.bench-top{background:linear-gradient(135deg,#1a1a1a 0%,#0a0a0a 100%);padding:32px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;border-bottom:3px solid #EF4444;}
+.bench-top::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 21px);}
+.confetti-piece{position:fixed;z-index:999;pointer-events:none;border-radius:2px;animation:confettiFall 1.8s ease-in forwards;}
+@keyframes confettiFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}
+.stamp-overlay{display:none;position:fixed;inset:0;align-items:center;justify-content:center;z-index:500;pointer-events:none;}
+.stamp-overlay.show{display:flex;}
+.stamp{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,15vw,120px);letter-spacing:6px;color:var(--gold);border:6px solid var(--gold);padding:16px 36px;border-radius:8px;transform:rotate(-15deg) scale(3);opacity:0;text-shadow:0 0 30px rgba(245,158,11,.5);box-shadow:0 0 60px rgba(245,158,11,.3);animation:stampIn .5s cubic-bezier(.34,1.56,.64,1) forwards;}
+@keyframes stampIn{0%{transform:rotate(-15deg) scale(3);opacity:0}60%{transform:rotate(-8deg) scale(1.05);opacity:1}100%{transform:rotate(-8deg) scale(1);opacity:1}}
+@keyframes benchShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px) rotate(-2deg)}40%{transform:translateX(8px) rotate(2deg)}60%{transform:translateX(-6px) rotate(-1deg)}80%{transform:translateX(6px) rotate(1deg)}}
+.card.shaking{animation:benchShake .5s ease;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark3);border:1px solid rgba(245,158,11,.3);color:#fff;padding:14px 24px;border-radius:100px;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:200;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+footer{position:relative;z-index:1;text-align:center;padding:24px;font-size:12px;color:rgba(255,255,255,.2);letter-spacing:1px;border-top:1px solid rgba(255,255,255,.05);font-family:'Barlow Condensed',sans-serif;}
+</style>
+</head>
+<body>
+
+<script>
+var CONFIG = {
+  nominationStart: new Date(2026, 2, 1),
+  nominationEnd:   new Date(2026, 2, 28),
+  termLabel: "Term 1 - January to April 2026",
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycby3gmu1myTKqCanbtJCJUfHsHjbUSk5MD-F5NSdxbQPEGqfcKvTh04P5xplUSBsPk3J/exec"
+};
+
+var STAFF = [
+ {name:"Vic R. Abrigo", role:"Administrative Aide", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1XbbEWjng3ESlnt9rZoLEez2gi8e9_OAK", greeting:"Hi! Ako si Vic Abrigo, ang assigned area sa akin ay ang dating Archery Range.", category:"admin", num:"01"},
+  {name:"Rany L. Baldera", role:"Administrative Aide", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1Lg_IvNHrX2jXXINQgowMSke3Ek1S-DZp", greeting:"Hi! Ako si Rany, Idol kung tawagin. Isa ako sa mga Driver ng kolehiyo!", category:"admin", num:"02"},
+  {name:"Shulan S. Bartolome", role:"Lifeguard", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1jkjcCOimI_MLuSNzUX674jFUM5AsBpD9", greeting:"Hi! Ako si Shulan. Isa ako sa mga Lifguard ng CHK. Kasalukuyang assigned sa CHK Small Gym.", category:"admin", num:"10"},
+  {name:"Eduardo Cruz", role:"Utility Worker", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Eduardo. Lagi akong handa para sa anumang repair.", category:"admin", num:"11"},
+  {name:"Fernando Gomez", role:"Security Guard", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Fernando. Binabantayan ko ang kaligtasan ng lahat sa CHK.", category:"admin", num:"20"},
+  {name:"Gregorio Aquino", role:"Security Guard", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Gregorio. Lagi akong alerto para sa inyong kaligtasan.", category:"admin", num:"21"},
+  {name:"Lourdes Reyes", role:"Librarian I", section:"Library Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Lourdes. Nandito ako para tulungan kayong mahanap ang kailangan ninyo.", category:"library", num:"30"},
+  {name:"Arsenio Flores", role:"Library Aide", section:"Library Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Arsenio. Bahala sa lahat ng libro at resources ng CHK library.", category:"library", num:"31"},
+  {name:"Teresita Ong", role:"Acad Support Staff", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Teresita. Tinutulungan ko ang mga estudyante at faculty sa kanilang mga pangangailangan.", category:"acadsupport", num:"40"},
+  {name:"Bonifacio Lim", role:"Acad Support Aide", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Bonifacio. Kasama ninyo sa bawat hakbang ng proseso.", category:"acadsupport", num:"41"},
+  {name:"Corazon Dela Paz", role:"PT Staff", section:"PT Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Corazon. Narito ako para sa kalusugan at wellness ng ating komunidad.", category:"pt", num:"50"},
+  {name:"Rodrigo Manalac", role:"PT Aide", section:"PT Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Rodrigo. Tumutulong ako sa mga pasyente at kliyente ng PT Section.", category:"pt", num:"51"},
+  {name:"James Lester P. Edrozo", role:"Administrative Officer V", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1EWAO8_CYixR3pQHYuWpXBS9wteZIoIcI", greeting:"Hi! Ako si James, ang isa sa mga AO ng kolehiyo. Anong meron dito?!", category:"admin", num:"00", ineligible:true},
+  {name:"Roque C. Tapel", role:"Administrative Officer I", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1NGkT2vq5pLYUyHdnAAI0CKjzy-JSKHIh", greeting:"Hi! Ako si Roque, mas kilala bilang TAPS. Isa ako sa mga AO ng kolehiyo", category:"admin", num:"00", ineligible:true},
+  {name:"Vivien T. Matias", role:"Administrative Officer I", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1o3haWRKeU4RU3UoXAR50jLUw_uSJQ0Ph", greeting:"Hi! Ako si Vienne. Isa sa mga AO ng kolehiyo!", category:"acadsupport", num:"00", ineligible:true}
+];
+
+
+var TABS = [
+  {key:"all", label:"All Staff"},
+  {key:"admin", label:"Admin Section"},
+  {key:"library", label:"Library"},
+  {key:"acadsupport", label:"Acad Support"},
+  {key:"pt", label:"PT Section"}
+];
+</script>
+
+<div class="hero">
+  <div class="hero-eyebrow">College of Human Kinetics - UP Diliman</div>
+  <h1><span class="outline">CHK</span> <span class="accent">MVP</span><br>of the Quarter</h1>
+  <p class="hero-subtitle">A quarterly recognition award for all CHK non-academic staff, regardless of employment status</p>
+  <div class="status-pill">
+    <div class="dot" id="statusDot"></div>
+    <span id="statusText">Loading...</span>
+  </div>
+</div>
+
+<div class="terms-row">
+  <div class="term-badge" id="term1">Term 1 - Jan to Apr</div>
+  <div class="term-badge" id="term2">Term 2 - May to Aug</div>
+  <div class="term-badge" id="term3">Term 3 - Sep to Dec</div>
+</div>
+
+<div class="tabs" id="tabsContainer"></div>
+
+<div style="position:relative;z-index:1;padding:20px 24px 0;max-width:1100px;margin:0 auto;">
+  <div class="closed-banner" id="closedBanner">NOMINATIONS CLOSED - Opens during the last month of each term</div>
+</div>
+
+<div class="section-header">
+  <h2>PICK YOUR <span>MVP</span></h2>
+  <p>Hover over a card to see their message. Click NOMINATE to cast your vote.</p>
+</div>
+
+<div class="grid" id="staffGrid"></div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal()">X</button>
+      <img src="" alt="" class="modal-avatar" id="modalAvatar">
+      <div class="modal-info">
+        <div class="modal-label">Your MVP Nominee</div>
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-role" id="modalRole"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <label>Your Name</label>
+      <input type="text" id="nominatorName" placeholder="Ilagay ang iyong pangalan..." style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s;margin-bottom:14px;" onfocus="this.style.borderColor='#F59E0B'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+      <label>Your Classification</label>
+      <select id="nominatorClass" style="width:100%;background:#1E1E1E;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s;margin-bottom:14px;cursor:pointer;" onfocus="this.style.borderColor='#F59E0B'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+        <option value="" disabled selected style="color:#888;">Piliin ang iyong classification...</option>
+        <option value="Faculty">Faculty</option>
+        <option value="Staff">Staff</option>
+        <option value="Student">Student</option>
+      </select>
+      <label>Bakit siya ang iyong MVP?</label>
+      <textarea id="nominationReason" placeholder="Isulat ang dahilan ng iyong nominasyon (1-3 sentences lang)..." maxlength="500"></textarea>
+      <div class="modal-hint">Max 500 characters - Filipino o English</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">CANCEL</button>
+      <button class="btn-submit" id="submitBtn" onclick="submitNomination()">SUBMIT VOTE</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="benchModal">
+  <div class="modal" style="max-width:380px;">
+    <div class="bench-top">
+      <button class="modal-close" onclick="closeBenchModal()">X</button>
+      <div style="font-size:56px;margin-bottom:12px;position:relative;z-index:1;">&#x1FA91;</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:#EF4444;position:relative;z-index:1;margin-bottom:8px;">BANGKO!</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:17px;letter-spacing:1px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;z-index:1;">Sorry, hindi pwede ma-nominate si <span id="benchName" style="color:var(--gold);font-weight:700;"></span>!<br>Bangko ang bata mo -<br>hindi pwede maging MVP!</div>
+    </div>
+    <div style="padding:20px 28px 24px;text-align:center;">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;">Isa siya sa nagma-manage ng nomination,<br>kaya siya ay nasa bangko! so sad, ayos lang yan</p>
+      <button onclick="closeBenchModal()" style="width:100%;padding:12px;background:var(--maroon);color:#fff;border:none;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;">OKAY SIGE</button>
+    </div>
+  </div>
+</div>
+
+<div class="stamp-overlay" id="stampOverlay"><div class="stamp">NOMINATED!</div></div>
+<div class="toast" id="toast"></div>
+
+<footer>CHK MVP OF THE QUARTER - COLLEGE OF HUMAN KINETICS - UNIVERSITY OF THE PHILIPPINES DILIMAN</footer>
+
+<script>
+var isOpen = false;
+var nomineeIdx = null;
+var COLORS = ['#F59E0B','#EF4444','#3B82F6','#10B981','#8B5CF6','#F97316','#fff'];
+
+function checkPeriod() {
+  var now = new Date();
+  isOpen = now >= CONFIG.nominationStart && now <= CONFIG.nominationEnd;
+  var dot = document.getElementById('statusDot');
+  var txt = document.getElementById('statusText');
+  var banner = document.getElementById('closedBanner');
+  var m = now.getMonth() + 1;
+  if (m >= 1 && m <= 4) document.getElementById('term1').classList.add('active');
+  else if (m >= 5 && m <= 8) document.getElementById('term2').classList.add('active');
+  else document.getElementById('term3').classList.add('active');
+  if (isOpen) {
+    dot.classList.remove('off');
+    var end = CONFIG.nominationEnd.toLocaleDateString('en-PH', {month:'long', day:'numeric', year:'numeric'});
+    txt.textContent = 'NOMINATIONS OPEN - Closes ' + end;
+    banner.style.display = 'none';
+  } else {
+    dot.classList.add('off');
+    txt.textContent = CONFIG.termLabel + ' - Nominations Closed';
+    banner.style.display = 'block';
+  }
+}
+
+function buildTabs() {
+  var wrap = document.getElementById('tabsContainer');
+  wrap.innerHTML = '';
+  for (var i = 0; i < TABS.length; i++) {
+    (function(t, idx) {
+      var btn = document.createElement('button');
+      btn.className = 'tab' + (idx === 0 ? ' active' : '');
+      btn.textContent = t.label;
+      btn.onclick = function() { switchTab(t.key, btn); };
+      wrap.appendChild(btn);
+    })(TABS[i], i);
+  }
+}
+
+function buildGrid(filter) {
+  var grid = document.getElementById('staffGrid');
+  grid.innerHTML = '';
+  var list = [];
+  for (var i = 0; i < STAFF.length; i++) {
+    if (filter === 'all' || STAFF[i].category === filter) list.push(STAFF[i]);
+  }
+  for (var j = 0; j < list.length; j++) {
+    (function(s, pos) {
+      var ri = STAFF.indexOf(s);
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('data-idx', ri);
+      card.setAttribute('data-cat', s.category);
+      card.style.animationDelay = (pos * 0.045) + 's';
+      var btnLabel = isOpen ? '&#9733; NOMINATE' : 'CLOSED';
+      var btnDisabled = isOpen ? '' : ' disabled';
+      var html = '';
+      html += '<div class="jersey">';
+      html += '<div class="jersey-stripes"></div>';
+      html += '<div class="jersey-number">' + s.num + '</div>';
+      html += '<div class="card-photo-wrap">';
+      html += '<img src="' + s.img + '" alt="' + s.name + '" loading="lazy">';
+      html += '</div>';
+      html += '<div class="mvp-badge">MVP</div>';
+      html += '</div>';
+      html += '<div class="card-tip">' + s.greeting + '</div>';
+      html += '<div class="card-footer">';
+      html += '<div class="card-name">' + s.name + '</div>';
+      html += '<div class="card-role">' + s.role + '</div>';
+      html += '<div class="card-section-tag">' + s.section + '</div>';
+      html += '<button class="pick-btn"' + btnDisabled + ' onclick="openModal(' + ri + ', event)">' + btnLabel + '</button>';
+      html += '</div>';
+      card.innerHTML = html;
+      grid.appendChild(card);
+    })(list[j], j);
+  }
+}
+
+function switchTab(cat, btn) {
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  btn.classList.add('active');
+  buildGrid(cat);
+}
+
+function openModal(idx, e) {
+  if (e) e.stopPropagation();
+  if (!isOpen) return;
+  var s = STAFF[idx];
+  if (!s) return;
+  if (s.ineligible) {
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+      if (parseInt(cards[i].getAttribute('data-idx')) === idx) {
+        cards[i].classList.remove('shaking');
+        void cards[i].offsetWidth;
+        cards[i].classList.add('shaking', 'benched');
+        setTimeout(function(c) { return function() { c.classList.remove('shaking'); }; }(cards[i]), 600);
+      }
+    }
+    document.getElementById('benchName').textContent = s.name;
+    document.getElementById('benchModal').classList.add('open');
+    return;
+  }
+  nomineeIdx = idx;
+  document.getElementById('modalAvatar').src = s.img;
+  document.getElementById('modalName').textContent = s.name;
+  document.getElementById('modalRole').textContent = s.role + ' - ' + s.section;
+  document.getElementById('nominatorName').value = '';
+  document.getElementById('nominatorClass').value = '';
+  document.getElementById('nominationReason').value = '';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  nomineeIdx = null;
+}
+
+function closeBenchModal() {
+  document.getElementById('benchModal').classList.remove('open');
+}
+
+function submitNomination() {
+  var nominatorName = document.getElementById('nominatorName').value.trim();
+  var nominatorClass = document.getElementById('nominatorClass').value;
+  var reason = document.getElementById('nominationReason').value.trim();
+
+  // Validate all fields
+  var valid = true;
+  if (!nominatorName) {
+    document.getElementById('nominatorName').style.borderColor = '#EF4444';
+    setTimeout(function() { document.getElementById('nominatorName').style.borderColor = 'rgba(255,255,255,.1)'; }, 1500);
+    valid = false;
+  }
+  if (!nominatorClass) {
+    document.getElementById('nominatorClass').style.borderColor = '#EF4444';
+    setTimeout(function() { document.getElementById('nominatorClass').style.borderColor = 'rgba(255,255,255,.1)'; }, 1500);
+    valid = false;
+  }
+  if (!reason) {
+    document.getElementById('nominationReason').style.borderColor = '#EF4444';
+    setTimeout(function() { document.getElementById('nominationReason').style.borderColor = 'rgba(255,255,255,.1)'; }, 1500);
+    valid = false;
+  }
+  if (!valid) return;
+
+  var s = STAFF[nomineeIdx];
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.textContent = 'SUBMITTING...';
+  submitBtn.disabled = true;
+
+  var payload = {
+    nominatorName: nominatorName,
+    classification: nominatorClass,
+    nomineeName: s.name,
+    nomineeSection: s.section,
+    reason: reason,
+    term: CONFIG.termLabel
+  };
+
+  fetch(CONFIG.appsScriptUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function() {
+    // Mark card as nominated
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+      if (parseInt(cards[i].getAttribute('data-idx')) === nomineeIdx) cards[i].classList.add('nominated');
+    }
+    closeModal();
+    launchConfetti();
+    showStamp();
+    showToast('Boto para kay ' + s.name + ' - Salamat, ' + nominatorName + '!');
+  })
+  .catch(function() {
+    closeModal();
+    launchConfetti();
+    showStamp();
+    showToast('Boto para kay ' + s.name + ' - Salamat!');
+  })
+  .finally(function() {
+    submitBtn.textContent = 'SUBMIT VOTE';
+    submitBtn.disabled = false;
+  });
+}
+
+function launchConfetti() {
+  for (var i = 0; i < 70; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var p = document.createElement('div');
+        p.className = 'confetti-piece';
+        p.style.left = (Math.random() * 100) + 'vw';
+        p.style.top = '-10px';
+        p.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+        p.style.width = (6 + Math.random() * 8) + 'px';
+        p.style.height = (6 + Math.random() * 8) + 'px';
+        p.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        p.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+        p.style.animationDelay = (Math.random() * 0.4) + 's';
+        document.body.appendChild(p);
+        setTimeout(function() { if (p.parentNode) p.parentNode.removeChild(p); }, 2600);
+      }, i * 18);
+    })(i);
+  }
+}
+
+function showStamp() {
+  var ov = document.getElementById('stampOverlay');
+  ov.classList.add('show');
+  setTimeout(function() { ov.classList.remove('show'); }, 1600);
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.getElementById('benchModal').addEventListener('click', function(e) {
+  if (e.target === this) closeBenchModal();
+});
+
+checkPeriod();
+buildTabs();
+buildGrid('all');
+</script>
+</body>
+</html>
