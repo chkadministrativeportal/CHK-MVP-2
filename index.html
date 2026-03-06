@@ -1,1 +1,796 @@
-&lt;!DOCTYPE html&gt;<br/>&lt;html lang=&quot;en&quot;&gt;<br/>&lt;head&gt;<br/>&lt;meta charset=&quot;UTF-8&quot;&gt;<br/>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;<br/>&lt;title&gt;CHK MVP of the Quarter&lt;/title&gt;<br/>&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700;800&amp;family=Barlow:wght@300;400;500&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;<br/>&lt;style&gt;<br/>:root{--maroon:#7F1D1D;--maroon2:#991B1B;--gold:#F59E0B;--gold2:#FCD34D;--dark:#0A0A0A;--dark2:#141414;--dark3:#1E1E1E;--muted:#888;}<br/>*{margin:0;padding:0;box-sizing:border-box;}<br/>body{font-family:&#39;Barlow&#39;,sans-serif;background:var(--dark);color:#F5F5F0;min-height:100vh;overflow-x:hidden;}<br/>body::before{content:&#39;&#39;;position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 20% 0%,rgba(127,29,29,.35) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 0%,rgba(245,158,11,.15) 0%,transparent 60%),radial-gradient(ellipse 80% 60% at 50% 100%,rgba(127,29,29,.2) 0%,transparent 60%);}<br/>body::after{content:&#39;&#39;;position:fixed;inset:0;pointer-events:none;z-index:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 40px,rgba(255,255,255,.012) 40px,rgba(255,255,255,.012) 41px);}<br/>.hero{position:relative;z-index:1;text-align:center;padding:56px 24px 48px;border-bottom:1px solid rgba(255,255,255,.06);}<br/>.hero-eyebrow{font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;opacity:0;animation:fadeUp .6s .1s forwards;}<br/>.hero h1{font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:clamp(60px,11vw,110px);line-height:.9;letter-spacing:2px;color:#fff;margin-bottom:6px;opacity:0;animation:fadeUp .6s .2s forwards;}<br/>.hero h1 .accent{color:var(--gold);}<br/>.hero h1 .outline{-webkit-text-stroke:2px rgba(255,255,255,.3);color:transparent;}<br/>.hero-subtitle{font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:15px;color:rgba(255,255,255,.45);letter-spacing:1.5px;font-style:italic;margin-bottom:24px;opacity:0;animation:fadeUp .6s .3s forwards;}<br/>.status-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:8px 20px;border-radius:100px;font-size:13px;color:rgba(255,255,255,.7);font-family:&#39;Barlow Condensed&#39;,sans-serif;letter-spacing:1px;opacity:0;animation:fadeUp .6s .4s forwards;}<br/>.status-pill .dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;animation:pulse 2s infinite;}<br/>.status-pill .dot.off{background:#EF4444;animation:none;}<br/>@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}<br/>@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}<br/>.terms-row{position:relative;z-index:1;display:flex;justify-content:center;gap:12px;padding:28px 24px 0;flex-wrap:wrap;}<br/>.term-badge{font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border:1px solid rgba(255,255,255,.1);border-radius:4px;color:rgba(255,255,255,.35);}<br/>.term-badge.active{border-color:var(--gold);color:var(--gold);background:rgba(245,158,11,.08);}<br/>.tabs{position:relative;z-index:1;display:flex;justify-content:center;gap:6px;padding:28px 24px 0;flex-wrap:wrap;}<br/>.tab{font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border:1.5px solid rgba(255,255,255,.12);border-radius:4px;background:transparent;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;}<br/>.tab:hover{border-color:var(--gold);color:var(--gold);}<br/>.tab.active{background:var(--maroon);color:#fff;border-color:var(--maroon2);box-shadow:0 0 20px rgba(127,29,29,.5);}<br/>.section-header{position:relative;z-index:1;text-align:center;padding:36px 24px 8px;}<br/>.section-header h2{font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:clamp(30px,5vw,46px);letter-spacing:3px;color:#fff;}<br/>.section-header h2 span{color:var(--gold);}<br/>.section-header p{font-size:14px;color:var(--muted);margin-top:4px;}<br/>.closed-banner{display:none;position:relative;z-index:1;max-width:680px;margin:24px auto 0;background:rgba(127,29,29,.2);border:1px solid rgba(127,29,29,.4);border-radius:8px;padding:16px 24px;text-align:center;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:16px;letter-spacing:1px;color:rgba(255,100,100,.9);}<br/>.grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:20px;max-width:1100px;margin:0 auto;padding:32px 24px 64px;}<br/>.card{position:relative;cursor:pointer;transition:transform .25s;animation:cardIn .5s both;}<br/>@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}<br/>.card:hover{transform:translateY(-6px) scale(1.03);}<br/>.jersey{position:relative;background:linear-gradient(160deg,var(--maroon) 0%,#5A0F0F 100%);border-radius:12px;overflow:hidden;padding-bottom:4px;box-shadow:0 4px 20px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);}<br/>.jersey::before{content:&#39;&#39;;position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:50%;height:22px;background:var(--dark2);border-radius:0 0 40px 40px;z-index:2;}<br/>.jersey-number{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:90px;color:rgba(255,255,255,.04);pointer-events:none;z-index:1;line-height:1;user-select:none;}<br/>.jersey-stripes{position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(90deg,var(--gold) 0,var(--gold) 20px,var(--maroon2) 20px,var(--maroon2) 40px);opacity:.7;}<br/>.card[data-cat=&quot;library&quot;] .jersey{background:linear-gradient(160deg,#1E3A5F 0%,#0F2040 100%);}<br/>.card[data-cat=&quot;library&quot;] .jersey-stripes{background:repeating-linear-gradient(90deg,#3B82F6 0,#3B82F6 20px,#1E3A5F 20px,#1E3A5F 40px);}<br/>.card[data-cat=&quot;acadsupport&quot;] .jersey{background:linear-gradient(160deg,#064E3B 0%,#022C22 100%);}<br/>.card[data-cat=&quot;acadsupport&quot;] .jersey-stripes{background:repeating-linear-gradient(90deg,#10B981 0,#10B981 20px,#064E3B 20px,#064E3B 40px);}<br/>.card[data-cat=&quot;pt&quot;] .jersey{background:linear-gradient(160deg,#4C1D95 0%,#2E1065 100%);}<br/>.card[data-cat=&quot;pt&quot;] .jersey-stripes{background:repeating-linear-gradient(90deg,#8B5CF6 0,#8B5CF6 20px,#4C1D95 20px,#4C1D95 40px);}<br/>.card-photo-wrap{position:relative;width:100%;aspect-ratio:1;overflow:hidden;z-index:2;}<br/>.card-photo-wrap img{width:100%;height:100%;object-fit:cover;transition:filter .4s,transform .3s;display:block;}<br/>.card:hover .card-photo-wrap img{transform:scale(1.06);}<br/>.card.benched .card-photo-wrap img{filter:grayscale(100%) brightness(.35);}<br/>.card-tip{display:none;position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:12px;line-height:1.5;padding:10px 14px;border-radius:8px;width:190px;text-align:center;z-index:20;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.4);}<br/>.card-tip::after{content:&#39;&#39;;position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark3);}<br/>.card:hover .card-tip{display:block;}<br/>.card-footer{padding:10px 12px 12px;position:relative;z-index:2;}<br/>.card-name{font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:16px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;line-height:1.1;}<br/>.card-role{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;}<br/>.card-section-tag{display:inline-block;margin-top:5px;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);}<br/>.pick-btn{width:100%;margin-top:8px;padding:7px 0;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold);color:var(--dark);border:none;border-radius:4px;cursor:pointer;transition:background .2s,transform .1s;}<br/>.pick-btn:hover{background:var(--gold2);transform:scale(1.02);}<br/>.pick-btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.3);cursor:not-allowed;transform:none;}<br/>.card.nominated .jersey{box-shadow:0 0 0 2px var(--gold),0 0 30px rgba(245,158,11,.4),0 4px 20px rgba(0,0,0,.5);}<br/>.mvp-badge{display:none;position:absolute;top:28px;right:-4px;background:var(--gold);color:var(--dark);font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:13px;letter-spacing:1px;padding:3px 10px 3px 8px;z-index:10;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,8% 50%);}<br/>.card.nominated .mvp-badge{display:block;}<br/>.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}<br/>.modal-overlay.open{display:flex;}<br/>.modal{background:var(--dark2);border:1px solid rgba(255,255,255,.08);border-radius:16px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);animation:modalIn .35s cubic-bezier(.34,1.56,.64,1);}<br/>@keyframes modalIn{from{opacity:0;transform:scale(.85) translateY(30px)}to{opacity:1;transform:scale(1) translateY(0)}}<br/>.modal-top{background:linear-gradient(135deg,var(--maroon) 0%,#3D0000 100%);padding:28px;display:flex;gap:18px;align-items:center;position:relative;border-bottom:3px solid var(--gold);}<br/>.modal-top::before{content:&#39;&#39;;position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 21px);}<br/>.modal-avatar{width:72px;height:72px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;position:relative;z-index:1;flex-shrink:0;}<br/>.modal-info{position:relative;z-index:1;}<br/>.modal-label{font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}<br/>.modal-name{font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:28px;letter-spacing:2px;color:#fff;line-height:1;}<br/>.modal-role{font-size:13px;color:rgba(255,255,255,.5);margin-top:2px;}<br/>.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;}<br/>.modal-close:hover{background:rgba(255,255,255,.2);color:#fff;}<br/>.modal-body{padding:24px 28px;}<br/>.modal-body label{display:block;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}<br/>.modal-body textarea{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 14px;font-family:&#39;Barlow&#39;,sans-serif;font-size:14px;color:#fff;resize:vertical;min-height:90px;outline:none;transition:border-color .2s;}<br/>.modal-body textarea:focus{border-color:var(--gold);}<br/>.modal-body textarea::placeholder{color:rgba(255,255,255,.2);}<br/>.modal-hint{font-size:11px;color:var(--muted);margin-top:6px;}<br/>.modal-footer{display:flex;gap:10px;padding:0 28px 28px;}<br/>.btn-cancel{flex:1;padding:12px;background:transparent;border:1.5px solid rgba(255,255,255,.12);border-radius:6px;color:rgba(255,255,255,.4);font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .2s;}<br/>.btn-cancel:hover{border-color:rgba(255,255,255,.3);color:#fff;}<br/>.btn-submit{flex:2;padding:12px;background:var(--gold);color:var(--dark);border:none;border-radius:6px;font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;transition:all .2s;}<br/>.btn-submit:hover{background:var(--gold2);transform:scale(1.02);}<br/>.bench-top{background:linear-gradient(135deg,#1a1a1a 0%,#0a0a0a 100%);padding:32px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;border-bottom:3px solid #EF4444;}<br/>.bench-top::before{content:&#39;&#39;;position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 21px);}<br/>.confetti-piece{position:fixed;z-index:999;pointer-events:none;border-radius:2px;animation:confettiFall 1.8s ease-in forwards;}<br/>@keyframes confettiFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}<br/>.stamp-overlay{display:none;position:fixed;inset:0;align-items:center;justify-content:center;z-index:500;pointer-events:none;}<br/>.stamp-overlay.show{display:flex;}<br/>.stamp{font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:clamp(60px,15vw,120px);letter-spacing:6px;color:var(--gold);border:6px solid var(--gold);padding:16px 36px;border-radius:8px;transform:rotate(-15deg) scale(3);opacity:0;text-shadow:0 0 30px rgba(245,158,11,.5);box-shadow:0 0 60px rgba(245,158,11,.3);animation:stampIn .5s cubic-bezier(.34,1.56,.64,1) forwards;}<br/>@keyframes stampIn{0%{transform:rotate(-15deg) scale(3);opacity:0}60%{transform:rotate(-8deg) scale(1.05);opacity:1}100%{transform:rotate(-8deg) scale(1);opacity:1}}<br/>@keyframes benchShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px) rotate(-2deg)}40%{transform:translateX(8px) rotate(2deg)}60%{transform:translateX(-6px) rotate(-1deg)}80%{transform:translateX(6px) rotate(1deg)}}<br/>.card.shaking{animation:benchShake .5s ease;}<br/>.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark3);border:1px solid rgba(245,158,11,.3);color:#fff;padding:14px 24px;border-radius:100px;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:16px;letter-spacing:1px;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:200;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;}<br/>.toast.show{transform:translateX(-50%) translateY(0);}<br/>footer{position:relative;z-index:1;text-align:center;padding:24px;font-size:12px;color:rgba(255,255,255,.2);letter-spacing:1px;border-top:1px solid rgba(255,255,255,.05);font-family:&#39;Barlow Condensed&#39;,sans-serif;}<br/>&lt;/style&gt;<br/>&lt;/head&gt;<br/>&lt;body&gt;<br/><br/>&lt;script&gt;<br/>var CONFIG = {<br/>  nominationStart: new Date(2026, 2, 1),<br/>  nominationEnd:   new Date(2026, 2, 28),<br/>  termLabel: &quot;Term 1 - January to April 2026&quot;,<br/>  appsScriptUrl: &quot;https://script.google.com/macros/s/AKfycby3gmu1myTKqCanbtJCJUfHsHjbUSk5MD-F5NSdxbQPEGqfcKvTh04P5xplUSBsPk3J/exec&quot;<br/>};<br/><br/>var STAFF = [<br/> {name:&quot;Vic R. Abrigo&quot;, role:&quot;Administrative Aide&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1XbbEWjng3ESlnt9rZoLEez2gi8e9_OAK&quot;, greeting:&quot;Hi! Ako si Vic Abrigo, ang assigned area sa akin ay ang dating Archery Range.&quot;, category:&quot;admin&quot;, num:&quot;01&quot;},<br/>  {name:&quot;Rany L. Baldera&quot;, role:&quot;Administrative Aide/Driver&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1Lg_IvNHrX2jXXINQgowMSke3Ek1S-DZp&quot;, greeting:&quot;Hi! Ako si Rany, Idol kung tawagin. Isa ako sa mga Driver ng kolehiyo!&quot;, category:&quot;admin&quot;, num:&quot;02&quot;},<br/>  {name:&quot;Shulan S. Bartolome&quot;, role:&quot;Lifeguard&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1jkjcCOimI_MLuSNzUX674jFUM5AsBpD9&quot;, greeting:&quot;Hi! Ako si Shulan. Isa ako sa mga Lifguard ng CHK. Kasalukuyang assigned sa CHK Small Gym.&quot;, category:&quot;admin&quot;, num:&quot;10&quot;},<br/>  {name:&quot;Emmanuel Joseph B. Cinco&quot;, role:&quot;Administrative Aide&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1uFHV21txJqHl8B_dnCEd0uSw8fWH1akI&quot;, greeting:&quot;Hi! Ako si Empong. Lagi akong handa para sa anumang repair, Building Admin ng VTC&quot;, category:&quot;admin&quot;, num:&quot;11&quot;},<br/>  {name:&quot;Ricky B. Dejarlo&quot;, role:&quot;Administrative Aide&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1fmRBN-Ycr0-assnFY-jbsDAN3Zl25k0-&quot;, greeting:&quot;Hi! Ako si Ricky. Kasalukuyang naka assign sa CHK Baseball Field&quot;, category:&quot;admin&quot;, num:&quot;20&quot;},<br/>  {name:&quot;Rico B. Tercio&quot;, role:&quot;Administrative Aide / Utility Foreman&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1iv5FS5STEGjZh15nyxWcW1wVlRPy7eOc&quot;, greeting:&quot;Hi! Ako si Rico B. Tercio.&quot;, category:&quot;admin&quot;, num:&quot;21&quot;},<br/> {name:&quot;Salbert Dela Cruz&quot;, role:&quot;Administrative Aide/Driver&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1IB1Ltu-jk7a38drQQap_Akdsiph7bDE6&quot;, greeting:&quot;Hi! Ako si Salbert I. Dela Cruz. Isa ako sa mga Driver ng kolehiyo!&quot;, category:&quot;admin&quot;, num:&quot;22&quot;},<br/> {name:&quot;Manasses A. Romero, Jr.&quot;, role:&quot;Lifeguard&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/104vI6NgeXBW55vzxBbo5qb2Egl_VSo0e&quot;, greeting:&quot;Hi! Ako si Jhong. Kasalukuyang assigned na Building Admin sa Tennis Court&quot;, category:&quot;admin&quot;, num:&quot;23&quot;},<br/> {name:&quot;Jenneth N. Clavano&quot;, role:&quot;Administrative Aide&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1CRYMjlpdRADT9BssCbUJl3QR3dfovQF2&quot;, greeting:&quot;Hi! Ako si Jenneth. Kasalukuyang assigned sa Ylanan Gym&quot;, category:&quot;admin&quot;, num:&quot;24&quot;},<br/> {name:&quot;Lyn A. Montesclaros&quot;, role:&quot;Administrative Aide&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1UzroC74QR69bLA70C8RBemFhBkMt3j5o&quot;, greeting:&quot;Hi! Ako si Lyn. Kasalukuyang assigned sa Varsity Training Center&quot;, category:&quot;admin&quot;, num:&quot;25&quot;},<br/> {name:&quot;Leoncio S. Cadag, Jr.&quot;, role:&quot;Liaison Officer&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1KAGVi8CSYVCNPKD3PW5dVZ4kyn8jt-Gf&quot;, greeting:&quot;Hi! Ako si Jhayr. Kasalukuyang assigned bilang Messenger at Assistant sa Admin Office&quot;, category:&quot;admin&quot;, num:&quot;26&quot;},<br/> {name:&quot;Rommel T. Lagahit&quot;, role:&quot;Utility&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/11xgXssctsIjP7yjHeSWADW_TZRHJE9tg&quot;, greeting:&quot;Hi! Ako si Rommel. Katuwang ni Empong sa pagkukumpuni&quot;, category:&quot;admin&quot;, num:&quot;27&quot;},<br/> {name:&quot;Ralph Mathew D. Mojeres&quot;, role:&quot;Utility&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1Vf5fPtoYzrWtf7UXuJqM6zX5nXHzU8AK&quot;, greeting:&quot;Hi! Ako si Mathew. Kasalukuyang assigned bilang Varsity Equipment Technician&quot;, category:&quot;admin&quot;, num:&quot;28&quot;},<br/> {name:&quot;Kristine Mae U. Supilanas&quot;, role:&quot;Utility&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1fa6OzbLkAg_oZylpJR34wW0Ypa6-I1Ee&quot;, greeting:&quot;Hi! Ako si Tintin. Kasalukuyang assigned sa AIT&quot;, category:&quot;admin&quot;, num:&quot;29&quot;},<br/>  {name:&quot;Maggie May I. Manjares&quot;, role:&quot;Head Librarian&quot;, section:&quot;Library Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1XIPy1Mcg3Dqy8aFuAtN5hoG979kTUNx8&quot;, greeting:&quot;Hi! Ako si Maggie. Nandito ako para tulungan kayong mahanap ang kailangan ninyo.&quot;, category:&quot;library&quot;, num:&quot;30&quot;},<br/>  {name:&quot;Marvin B. Mulle&quot;, role:&quot;Administrative Assistant/ Librarian&quot;, section:&quot;Library Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1__HcRYnWMZsp30-Nu4pBk6-n1nAnKyBY&quot;, greeting:&quot;Hi! Ako si Marvin. Bahala sa lahat ng libro at resources ng CHK library.&quot;, category:&quot;library&quot;, num:&quot;31&quot;},<br/>  {name:&quot;Rosalia B. Espiritu&quot;, role:&quot;Student Records Evaluator&quot;, section:&quot;Academic Support&quot;, img:&quot;https://lh3.googleusercontent.com/d/1OEz3lIaR18545calB3LFTlMmroYxjaWx&quot;, greeting:&quot;Hi! Ako si Jeng. Tinutulungan ko ang mga estudyante at faculty sa kanilang mga pangangailangan.&quot;, category:&quot;acadsupport&quot;, num:&quot;40&quot;},<br/>  {name:&quot;Clementina DV. Dela Peña&quot;, role:&quot;Administrative Assistant&quot;, section:&quot;Academic Support&quot;, img:&quot;https://lh3.googleusercontent.com/d/1gSNC9K7fMBJTSBjY_Kc9k8SsAcATwBVX&quot;, greeting:&quot;Hi! Ako si Clem. Kasama ninyo sa bawat hakbang ng proseso.&quot;, category:&quot;acadsupport&quot;, num:&quot;41&quot;},<br/>  {name:&quot;Gleziel M. Aparato&quot;, role:&quot;Administrative Aide&quot;, section:&quot;Academic Support&quot;, img:&quot;https://lh3.googleusercontent.com/d/1x-VOw40az028sNVwJy38lYUfftww7d6n&quot;, greeting:&quot;Hi! Ako si Gleize. Kasama ninyo sa bawat hakbang ng proseso.&quot;, category:&quot;acadsupport&quot;, num:&quot;42&quot;},<br/>  {name:&quot;Hanzel Allan C. Cruz&quot;, role:&quot;Senior Office Assistant&quot;, section:&quot;Academic Support&quot;, img:&quot;https://lh3.googleusercontent.com/d/1J4zYzVnyBm3q-UYsr1vWl23glea4JQIH&quot;, greeting:&quot;Hi! Ako si Hanz. Kasama ninyo sa bawat hakbang ng proseso.&quot;, category:&quot;acadsupport&quot;, num:&quot;43&quot;},<br/>  {name:&quot;Paolo F. Patawaran&quot;, role:&quot;Senior Office Assistant&quot;, section:&quot;Academic Support&quot;, img:&quot;https://lh3.googleusercontent.com/d/1wECB6K87Jx_Pbu4Bn-JjFRvMEDmnnaNW&quot;, greeting:&quot;Hi! Ako si Paolo. Kasama ninyo sa bawat hakbang ng proseso.&quot;, category:&quot;acadsupport&quot;, num:&quot;44&quot;},<br/>  {name:&quot;John Jake A. Gallardo&quot;, role:&quot;Senior Office Assistant&quot;, section:&quot;Academic Support&quot;, img:&quot;https://lh3.googleusercontent.com/d/1wECB6K87Jx_Pbu4Bn-JjFRvMEDmnnaNW&quot;, greeting:&quot;Hi! Ako si JJ. Waiting lang sa paglipat ni Papa P.&quot;, category:&quot;acadsupport&quot;, num:&quot;45&quot;},<br/>  {name:&quot;Patricia Moira R. Parungao&quot;, role:&quot;Head Physical Therapist&quot;, section:&quot;PT Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1cWP17x6MiLwlUQnvbcsL7oBoPmsfTINx&quot;, greeting:&quot;Hi! Ako si PT Moira. Narito ako para sa kalusugan at wellness ng ating komunidad.&quot;, category:&quot;pt&quot;, num:&quot;50&quot;},<br/>  {name:&quot;Roel Immanuel Y. Antero&quot;, role:&quot;Physical Therapist&quot;, section:&quot;PT Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1OWRCcCXMkuJjpZB4p0gHlnw4XTUz86Tt&quot;, greeting:&quot;Hi! Ako si PT Imman. Tumutulong ako sa mga pasyente at kliyente ng PT Section.&quot;, category:&quot;pt&quot;, num:&quot;51&quot;},<br/>  {name:&quot;James Lester P. Edrozo&quot;, role:&quot;Administrative Officer V&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1EWAO8_CYixR3pQHYuWpXBS9wteZIoIcI&quot;, greeting:&quot;Hi! Ako si James, ang isa sa mga AO ng kolehiyo. Anong meron dito?!&quot;, category:&quot;admin&quot;, num:&quot;00&quot;, ineligible:true},<br/>  {name:&quot;Roque C. Tapel&quot;, role:&quot;Administrative Officer I&quot;, section:&quot;Administrative Section&quot;, img:&quot;https://lh3.googleusercontent.com/d/1NGkT2vq5pLYUyHdnAAI0CKjzy-JSKHIh&quot;, greeting:&quot;Hi! Ako si Roque, mas kilala bilang TAPS. Isa ako sa mga AO ng kolehiyo&quot;, category:&quot;admin&quot;, num:&quot;00&quot;, ineligible:true},<br/>  {name:&quot;Vivien T. Matias&quot;, role:&quot;Administrative Officer I&quot;, section:&quot;Academic Support&quot;, img:&quot;https://lh3.googleusercontent.com/d/1o3haWRKeU4RU3UoXAR50jLUw_uSJQ0Ph&quot;, greeting:&quot;Hi! Ako si Vienne. Isa sa mga AO ng kolehiyo!&quot;, category:&quot;acadsupport&quot;, num:&quot;00&quot;, ineligible:true}<br/>];<br/><br/><br/>var TABS = [<br/>  {key:&quot;all&quot;, label:&quot;All Staff&quot;},<br/>  {key:&quot;admin&quot;, label:&quot;Admin Section&quot;},<br/>  {key:&quot;library&quot;, label:&quot;Library&quot;},<br/>  {key:&quot;acadsupport&quot;, label:&quot;Acad Support&quot;},<br/>  {key:&quot;pt&quot;, label:&quot;PT Section&quot;}<br/>];<br/>&lt;/script&gt;<br/><br/>&lt;div class=&quot;hero&quot;&gt;<br/>  &lt;div class=&quot;hero-eyebrow&quot;&gt;College of Human Kinetics - UP Diliman&lt;/div&gt;<br/>  &lt;h1&gt;&lt;span class=&quot;outline&quot;&gt;CHK&lt;/span&gt; &lt;span class=&quot;accent&quot;&gt;MVP&lt;/span&gt;&lt;br&gt;of the Quarter&lt;/h1&gt;<br/>  &lt;p class=&quot;hero-subtitle&quot;&gt;A quarterly recognition award for all CHK non-academic staff, regardless of employment status&lt;/p&gt;<br/>  &lt;div class=&quot;status-pill&quot;&gt;<br/>    &lt;div class=&quot;dot&quot; id=&quot;statusDot&quot;&gt;&lt;/div&gt;<br/>    &lt;span id=&quot;statusText&quot;&gt;Loading...&lt;/span&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;<br/><br/>&lt;div class=&quot;terms-row&quot;&gt;<br/>  &lt;div class=&quot;term-badge&quot; id=&quot;term1&quot;&gt;Term 1 - Jan to Apr&lt;/div&gt;<br/>  &lt;div class=&quot;term-badge&quot; id=&quot;term2&quot;&gt;Term 2 - May to Aug&lt;/div&gt;<br/>  &lt;div class=&quot;term-badge&quot; id=&quot;term3&quot;&gt;Term 3 - Sep to Dec&lt;/div&gt;<br/>&lt;/div&gt;<br/><br/>&lt;div class=&quot;tabs&quot; id=&quot;tabsContainer&quot;&gt;&lt;/div&gt;<br/><br/>&lt;div style=&quot;position:relative;z-index:1;padding:20px 24px 0;max-width:1100px;margin:0 auto;&quot;&gt;<br/>  &lt;div class=&quot;closed-banner&quot; id=&quot;closedBanner&quot;&gt;NOMINATIONS CLOSED - Opens during the last month of each term&lt;/div&gt;<br/>&lt;/div&gt;<br/><br/>&lt;div class=&quot;section-header&quot;&gt;<br/>  &lt;h2&gt;PICK YOUR &lt;span&gt;MVP&lt;/span&gt;&lt;/h2&gt;<br/>  &lt;p&gt;Hover over a card to see their message. Click NOMINATE to cast your vote.&lt;/p&gt;<br/>&lt;/div&gt;<br/><br/>&lt;div class=&quot;grid&quot; id=&quot;staffGrid&quot;&gt;&lt;/div&gt;<br/><br/>&lt;div class=&quot;modal-overlay&quot; id=&quot;modalOverlay&quot;&gt;<br/>  &lt;div class=&quot;modal&quot;&gt;<br/>    &lt;div class=&quot;modal-top&quot;&gt;<br/>      &lt;button class=&quot;modal-close&quot; onclick=&quot;closeModal()&quot;&gt;X&lt;/button&gt;<br/>      &lt;img src=&quot;&quot; alt=&quot;&quot; class=&quot;modal-avatar&quot; id=&quot;modalAvatar&quot;&gt;<br/>      &lt;div class=&quot;modal-info&quot;&gt;<br/>        &lt;div class=&quot;modal-label&quot;&gt;Your MVP Nominee&lt;/div&gt;<br/>        &lt;div class=&quot;modal-name&quot; id=&quot;modalName&quot;&gt;&lt;/div&gt;<br/>        &lt;div class=&quot;modal-role&quot; id=&quot;modalRole&quot;&gt;&lt;/div&gt;<br/>      &lt;/div&gt;<br/>    &lt;/div&gt;<br/>    &lt;div class=&quot;modal-body&quot;&gt;<br/>      &lt;label&gt;Your Name&lt;/label&gt;<br/>      &lt;input type=&quot;text&quot; id=&quot;nominatorName&quot; placeholder=&quot;Ilagay ang iyong pangalan...&quot; style=&quot;width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-family:&#39;Barlow&#39;,sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s;margin-bottom:14px;&quot; onfocus=&quot;this.style.borderColor=&#39;#F59E0B&#39;&quot; onblur=&quot;this.style.borderColor=&#39;rgba(255,255,255,.1)&#39;&quot;&gt;<br/>      &lt;label&gt;Your Classification&lt;/label&gt;<br/>      &lt;select id=&quot;nominatorClass&quot; style=&quot;width:100%;background:#1E1E1E;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-family:&#39;Barlow&#39;,sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s;margin-bottom:14px;cursor:pointer;&quot; onfocus=&quot;this.style.borderColor=&#39;#F59E0B&#39;&quot; onblur=&quot;this.style.borderColor=&#39;rgba(255,255,255,.1)&#39;&quot;&gt;<br/>        &lt;option value=&quot;&quot; disabled selected style=&quot;color:#888;&quot;&gt;Piliin ang iyong classification...&lt;/option&gt;<br/>        &lt;option value=&quot;Faculty&quot;&gt;Faculty&lt;/option&gt;<br/>        &lt;option value=&quot;Staff&quot;&gt;Staff&lt;/option&gt;<br/>        &lt;option value=&quot;Student&quot;&gt;Student&lt;/option&gt;<br/>      &lt;/select&gt;<br/>      &lt;label&gt;Bakit siya ang iyong MVP?&lt;/label&gt;<br/>      &lt;textarea id=&quot;nominationReason&quot; placeholder=&quot;Isulat ang dahilan ng iyong nominasyon (1-3 sentences lang)...&quot; maxlength=&quot;500&quot;&gt;&lt;/textarea&gt;<br/>      &lt;div class=&quot;modal-hint&quot;&gt;Max 500 characters - Filipino o English&lt;/div&gt;<br/>    &lt;/div&gt;<br/>    &lt;div class=&quot;modal-footer&quot;&gt;<br/>      &lt;button class=&quot;btn-cancel&quot; onclick=&quot;closeModal()&quot;&gt;CANCEL&lt;/button&gt;<br/>      &lt;button class=&quot;btn-submit&quot; id=&quot;submitBtn&quot; onclick=&quot;submitNomination()&quot;&gt;SUBMIT VOTE&lt;/button&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;<br/><br/>&lt;div class=&quot;modal-overlay&quot; id=&quot;benchModal&quot;&gt;<br/>  &lt;div class=&quot;modal&quot; style=&quot;max-width:380px;&quot;&gt;<br/>    &lt;div class=&quot;bench-top&quot;&gt;<br/>      &lt;button class=&quot;modal-close&quot; onclick=&quot;closeBenchModal()&quot;&gt;X&lt;/button&gt;<br/>      &lt;div style=&quot;font-size:56px;margin-bottom:12px;position:relative;z-index:1;&quot;&gt;&amp;#x1FA91;&lt;/div&gt;<br/>      &lt;div style=&quot;font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:36px;letter-spacing:3px;color:#EF4444;position:relative;z-index:1;margin-bottom:8px;&quot;&gt;BANGKO!&lt;/div&gt;<br/>      &lt;div style=&quot;font-family:&#39;Barlow Condensed&#39;,sans-serif;font-size:17px;letter-spacing:1px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;z-index:1;&quot;&gt;Sorry, hindi pwede ma-nominate si &lt;span id=&quot;benchName&quot; style=&quot;color:var(--gold);font-weight:700;&quot;&gt;&lt;/span&gt;!&lt;br&gt;Bangko ang bata mo -&lt;br&gt;hindi pwede maging MVP!&lt;/div&gt;<br/>    &lt;/div&gt;<br/>    &lt;div style=&quot;padding:20px 28px 24px;text-align:center;&quot;&gt;<br/>      &lt;p style=&quot;font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;&quot;&gt;Isa siya sa nagma-manage ng nomination,&lt;br&gt;kaya siya ay nasa bangko! so sad, ayos lang yan&lt;/p&gt;<br/>      &lt;button onclick=&quot;closeBenchModal()&quot; style=&quot;width:100%;padding:12px;background:var(--maroon);color:#fff;border:none;border-radius:6px;font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;&quot;&gt;OKAY SIGE&lt;/button&gt;<br/>    &lt;/div&gt;<br/>  &lt;/div&gt;<br/>&lt;/div&gt;<br/><br/>&lt;div class=&quot;stamp-overlay&quot; id=&quot;stampOverlay&quot;&gt;&lt;div class=&quot;stamp&quot;&gt;NOMINATED!&lt;/div&gt;&lt;/div&gt;<br/>&lt;div class=&quot;toast&quot; id=&quot;toast&quot;&gt;&lt;/div&gt;<br/><br/>&lt;footer&gt;CHK MVP OF THE QUARTER - COLLEGE OF HUMAN KINETICS - UNIVERSITY OF THE PHILIPPINES DILIMAN&lt;/footer&gt;<br/><br/>&lt;script&gt;<br/>var isOpen = false;<br/>var nomineeIdx = null;<br/>var COLORS = [&#39;#F59E0B&#39;,&#39;#EF4444&#39;,&#39;#3B82F6&#39;,&#39;#10B981&#39;,&#39;#8B5CF6&#39;,&#39;#F97316&#39;,&#39;#fff&#39;];<br/><br/>function checkPeriod() {<br/>  var now = new Date();<br/>  isOpen = now &gt;= CONFIG.nominationStart &amp;&amp; now &lt;= CONFIG.nominationEnd;<br/>  var dot = document.getElementById(&#39;statusDot&#39;);<br/>  var txt = document.getElementById(&#39;statusText&#39;);<br/>  var banner = document.getElementById(&#39;closedBanner&#39;);<br/>  var m = now.getMonth() + 1;<br/>  if (m &gt;= 1 &amp;&amp; m &lt;= 4) document.getElementById(&#39;term1&#39;).classList.add(&#39;active&#39;);<br/>  else if (m &gt;= 5 &amp;&amp; m &lt;= 8) document.getElementById(&#39;term2&#39;).classList.add(&#39;active&#39;);<br/>  else document.getElementById(&#39;term3&#39;).classList.add(&#39;active&#39;);<br/>  if (isOpen) {<br/>    dot.classList.remove(&#39;off&#39;);<br/>    var end = CONFIG.nominationEnd.toLocaleDateString(&#39;en-PH&#39;, {month:&#39;long&#39;, day:&#39;numeric&#39;, year:&#39;numeric&#39;});<br/>    txt.textContent = &#39;NOMINATIONS OPEN - Closes &#39; + end;<br/>    banner.style.display = &#39;none&#39;;<br/>  } else {<br/>    dot.classList.add(&#39;off&#39;);<br/>    txt.textContent = CONFIG.termLabel + &#39; - Nominations Closed&#39;;<br/>    banner.style.display = &#39;block&#39;;<br/>  }<br/>}<br/><br/>function buildTabs() {<br/>  var wrap = document.getElementById(&#39;tabsContainer&#39;);<br/>  wrap.innerHTML = &#39;&#39;;<br/>  for (var i = 0; i &lt; TABS.length; i++) {<br/>    (function(t, idx) {<br/>      var btn = document.createElement(&#39;button&#39;);<br/>      btn.className = &#39;tab&#39; + (idx === 0 ? &#39; active&#39; : &#39;&#39;);<br/>      btn.textContent = t.label;<br/>      btn.onclick = function() { switchTab(t.key, btn); };<br/>      wrap.appendChild(btn);<br/>    })(TABS[i], i);<br/>  }<br/>}<br/><br/>function buildGrid(filter) {<br/>  var grid = document.getElementById(&#39;staffGrid&#39;);<br/>  grid.innerHTML = &#39;&#39;;<br/>  var list = [];<br/>  for (var i = 0; i &lt; STAFF.length; i++) {<br/>    if (filter === &#39;all&#39; || STAFF[i].category === filter) list.push(STAFF[i]);<br/>  }<br/>  for (var j = 0; j &lt; list.length; j++) {<br/>    (function(s, pos) {<br/>      var ri = STAFF.indexOf(s);<br/>      var card = document.createElement(&#39;div&#39;);<br/>      card.className = &#39;card&#39;;<br/>      card.setAttribute(&#39;data-idx&#39;, ri);<br/>      card.setAttribute(&#39;data-cat&#39;, s.category);<br/>      card.style.animationDelay = (pos * 0.045) + &#39;s&#39;;<br/>      var btnLabel = isOpen ? &#39;&amp;#9733; NOMINATE&#39; : &#39;CLOSED&#39;;<br/>      var btnDisabled = isOpen ? &#39;&#39; : &#39; disabled&#39;;<br/>      var html = &#39;&#39;;<br/>      html += &#39;&lt;div class=&quot;jersey&quot;&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;jersey-stripes&quot;&gt;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;jersey-number&quot;&gt;&#39; + s.num + &#39;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;card-photo-wrap&quot;&gt;&#39;;<br/>      html += &#39;&lt;img src=&quot;&#39; + s.img + &#39;&quot; alt=&quot;&#39; + s.name + &#39;&quot; loading=&quot;lazy&quot;&gt;&#39;;<br/>      html += &#39;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;mvp-badge&quot;&gt;MVP&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;card-tip&quot;&gt;&#39; + s.greeting + &#39;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;card-footer&quot;&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;card-name&quot;&gt;&#39; + s.name + &#39;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;card-role&quot;&gt;&#39; + s.role + &#39;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;div class=&quot;card-section-tag&quot;&gt;&#39; + s.section + &#39;&lt;/div&gt;&#39;;<br/>      html += &#39;&lt;button class=&quot;pick-btn&quot;&#39; + btnDisabled + &#39; onclick=&quot;openModal(&#39; + ri + &#39;, event)&quot;&gt;&#39; + btnLabel + &#39;&lt;/button&gt;&#39;;<br/>      html += &#39;&lt;/div&gt;&#39;;<br/>      card.innerHTML = html;<br/>      grid.appendChild(card);<br/>    })(list[j], j);<br/>  }<br/>}<br/><br/>function switchTab(cat, btn) {<br/>  var tabs = document.querySelectorAll(&#39;.tab&#39;);<br/>  for (var i = 0; i &lt; tabs.length; i++) tabs[i].classList.remove(&#39;active&#39;);<br/>  btn.classList.add(&#39;active&#39;);<br/>  buildGrid(cat);<br/>}<br/><br/>function openModal(idx, e) {<br/>  if (e) e.stopPropagation();<br/>  if (!isOpen) return;<br/>  var s = STAFF[idx];<br/>  if (!s) return;<br/>  if (s.ineligible) {<br/>    var cards = document.querySelectorAll(&#39;.card&#39;);<br/>    for (var i = 0; i &lt; cards.length; i++) {<br/>      if (parseInt(cards[i].getAttribute(&#39;data-idx&#39;)) === idx) {<br/>        cards[i].classList.remove(&#39;shaking&#39;);<br/>        void cards[i].offsetWidth;<br/>        cards[i].classList.add(&#39;shaking&#39;, &#39;benched&#39;);<br/>        setTimeout(function(c) { return function() { c.classList.remove(&#39;shaking&#39;); }; }(cards[i]), 600);<br/>      }<br/>    }<br/>    document.getElementById(&#39;benchName&#39;).textContent = s.name;<br/>    document.getElementById(&#39;benchModal&#39;).classList.add(&#39;open&#39;);<br/>    return;<br/>  }<br/>  nomineeIdx = idx;<br/>  document.getElementById(&#39;modalAvatar&#39;).src = s.img;<br/>  document.getElementById(&#39;modalName&#39;).textContent = s.name;<br/>  document.getElementById(&#39;modalRole&#39;).textContent = s.role + &#39; - &#39; + s.section;<br/>  document.getElementById(&#39;nominatorName&#39;).value = &#39;&#39;;<br/>  document.getElementById(&#39;nominatorClass&#39;).value = &#39;&#39;;<br/>  document.getElementById(&#39;nominationReason&#39;).value = &#39;&#39;;<br/>  document.getElementById(&#39;modalOverlay&#39;).classList.add(&#39;open&#39;);<br/>}<br/><br/>function closeModal() {<br/>  document.getElementById(&#39;modalOverlay&#39;).classList.remove(&#39;open&#39;);<br/>  nomineeIdx = null;<br/>}<br/><br/>function closeBenchModal() {<br/>  document.getElementById(&#39;benchModal&#39;).classList.remove(&#39;open&#39;);<br/>}<br/><br/>function submitNomination() {<br/>  var nominatorName = document.getElementById(&#39;nominatorName&#39;).value.trim();<br/>  var nominatorClass = document.getElementById(&#39;nominatorClass&#39;).value;<br/>  var reason = document.getElementById(&#39;nominationReason&#39;).value.trim();<br/><br/>  // Validate all fields<br/>  var valid = true;<br/>  if (!nominatorName) {<br/>    document.getElementById(&#39;nominatorName&#39;).style.borderColor = &#39;#EF4444&#39;;<br/>    setTimeout(function() { document.getElementById(&#39;nominatorName&#39;).style.borderColor = &#39;rgba(255,255,255,.1)&#39;; }, 1500);<br/>    valid = false;<br/>  }<br/>  if (!nominatorClass) {<br/>    document.getElementById(&#39;nominatorClass&#39;).style.borderColor = &#39;#EF4444&#39;;<br/>    setTimeout(function() { document.getElementById(&#39;nominatorClass&#39;).style.borderColor = &#39;rgba(255,255,255,.1)&#39;; }, 1500);<br/>    valid = false;<br/>  }<br/>  if (!reason) {<br/>    document.getElementById(&#39;nominationReason&#39;).style.borderColor = &#39;#EF4444&#39;;<br/>    setTimeout(function() { document.getElementById(&#39;nominationReason&#39;).style.borderColor = &#39;rgba(255,255,255,.1)&#39;; }, 1500);<br/>    valid = false;<br/>  }<br/>  if (!valid) return;<br/><br/>  var s = STAFF[nomineeIdx];<br/>  var submitBtn = document.getElementById(&#39;submitBtn&#39;);<br/>  submitBtn.textContent = &#39;SUBMITTING...&#39;;<br/>  submitBtn.disabled = true;<br/><br/>  var payload = {<br/>    nominatorName: nominatorName,<br/>    classification: nominatorClass,<br/>    nomineeName: s.name,<br/>    nomineeSection: s.section,<br/>    reason: reason,<br/>    term: CONFIG.termLabel<br/>  };<br/><br/>  fetch(CONFIG.appsScriptUrl, {<br/>    method: &#39;POST&#39;,<br/>    mode: &#39;no-cors&#39;,<br/>    headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },<br/>    body: JSON.stringify(payload)<br/>  })<br/>  .then(function() {<br/>    // Mark card as nominated<br/>    var cards = document.querySelectorAll(&#39;.card&#39;);<br/>    for (var i = 0; i &lt; cards.length; i++) {<br/>      if (parseInt(cards[i].getAttribute(&#39;data-idx&#39;)) === nomineeIdx) cards[i].classList.add(&#39;nominated&#39;);<br/>    }<br/>    closeModal();<br/>    launchConfetti();<br/>    showStamp();<br/>    showToast(&#39;Boto para kay &#39; + s.name + &#39; - Salamat, &#39; + nominatorName + &#39;!&#39;);<br/>  })<br/>  .catch(function() {<br/>    closeModal();<br/>    launchConfetti();<br/>    showStamp();<br/>    showToast(&#39;Boto para kay &#39; + s.name + &#39; - Salamat!&#39;);<br/>  })<br/>  .finally(function() {<br/>    submitBtn.textContent = &#39;SUBMIT VOTE&#39;;<br/>    submitBtn.disabled = false;<br/>  });<br/>}<br/><br/>function launchConfetti() {<br/>  for (var i = 0; i &lt; 70; i++) {<br/>    (function(i) {<br/>      setTimeout(function() {<br/>        var p = document.createElement(&#39;div&#39;);<br/>        p.className = &#39;confetti-piece&#39;;<br/>        p.style.left = (Math.random() * 100) + &#39;vw&#39;;<br/>        p.style.top = &#39;-10px&#39;;<br/>        p.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];<br/>        p.style.width = (6 + Math.random() * 8) + &#39;px&#39;;<br/>        p.style.height = (6 + Math.random() * 8) + &#39;px&#39;;<br/>        p.style.borderRadius = Math.random() &gt; 0.5 ? &#39;50%&#39; : &#39;2px&#39;;<br/>        p.style.animationDuration = (1.2 + Math.random() * 1.2) + &#39;s&#39;;<br/>        p.style.animationDelay = (Math.random() * 0.4) + &#39;s&#39;;<br/>        document.body.appendChild(p);<br/>        setTimeout(function() { if (p.parentNode) p.parentNode.removeChild(p); }, 2600);<br/>      }, i * 18);<br/>    })(i);<br/>  }<br/>}<br/><br/>function showStamp() {<br/>  var ov = document.getElementById(&#39;stampOverlay&#39;);<br/>  ov.classList.add(&#39;show&#39;);<br/>  setTimeout(function() { ov.classList.remove(&#39;show&#39;); }, 1600);<br/>}<br/><br/>function showToast(msg) {<br/>  var t = document.getElementById(&#39;toast&#39;);<br/>  t.textContent = msg;<br/>  t.classList.add(&#39;show&#39;);<br/>  setTimeout(function() { t.classList.remove(&#39;show&#39;); }, 3500);<br/>}<br/><br/>document.getElementById(&#39;modalOverlay&#39;).addEventListener(&#39;click&#39;, function(e) {<br/>  if (e.target === this) closeModal();<br/>});<br/>document.getElementById(&#39;benchModal&#39;).addEventListener(&#39;click&#39;, function(e) {<br/>  if (e.target === this) closeBenchModal();<br/>});<br/><br/>checkPeriod();<br/>buildTabs();<br/>buildGrid(&#39;all&#39;);<br/>&lt;/script&gt;<br/>&lt;/body&gt;<br/>&lt;/html&gt;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHK MVP of the Semester</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--maroon:#7F1D1D;--maroon2:#991B1B;--gold:#F59E0B;--gold2:#FCD34D;--dark:#0A0A0A;--dark2:#141414;--dark3:#1E1E1E;--muted:#888;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Barlow',sans-serif;background:var(--dark);color:#F5F5F0;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 20% 0%,rgba(127,29,29,.35) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 0%,rgba(245,158,11,.15) 0%,transparent 60%),radial-gradient(ellipse 80% 60% at 50% 100%,rgba(127,29,29,.2) 0%,transparent 60%);}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 40px,rgba(255,255,255,.012) 40px,rgba(255,255,255,.012) 41px);}
+.hero{position:relative;z-index:1;text-align:center;padding:56px 24px 48px;border-bottom:1px solid rgba(255,255,255,.06);}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;opacity:0;animation:fadeUp .6s .1s forwards;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,11vw,110px);line-height:.9;letter-spacing:2px;color:#fff;margin-bottom:6px;opacity:0;animation:fadeUp .6s .2s forwards;}
+.hero h1 .accent{color:var(--gold);}
+.hero h1 .outline{-webkit-text-stroke:2px rgba(255,255,255,.3);color:transparent;}
+.hero-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:15px;color:rgba(255,255,255,.45);letter-spacing:1.5px;font-style:italic;margin-bottom:24px;opacity:0;animation:fadeUp .6s .3s forwards;}
+.status-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:8px 20px;border-radius:100px;font-size:13px;color:rgba(255,255,255,.7);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;opacity:0;animation:fadeUp .6s .4s forwards;}
+.status-pill .dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;animation:pulse 2s infinite;}
+.status-pill .dot.off{background:#EF4444;animation:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.terms-row{position:relative;z-index:1;display:flex;justify-content:center;gap:12px;padding:28px 24px 0;flex-wrap:wrap;}
+.term-badge{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border:1px solid rgba(255,255,255,.1);border-radius:4px;color:rgba(255,255,255,.35);}
+.term-badge.active{border-color:var(--gold);color:var(--gold);background:rgba(245,158,11,.08);}
+.tabs{position:relative;z-index:1;display:flex;justify-content:center;gap:6px;padding:28px 24px 0;flex-wrap:wrap;}
+.tab{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border:1.5px solid rgba(255,255,255,.12);border-radius:4px;background:transparent;color:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;}
+.tab:hover{border-color:var(--gold);color:var(--gold);}
+.tab.active{background:var(--maroon);color:#fff;border-color:var(--maroon2);box-shadow:0 0 20px rgba(127,29,29,.5);}
+.section-header{position:relative;z-index:1;text-align:center;padding:36px 24px 8px;}
+.section-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,46px);letter-spacing:3px;color:#fff;}
+.section-header h2 span{color:var(--gold);}
+.section-header p{font-size:14px;color:var(--muted);margin-top:4px;}
+.closed-banner{display:none;position:relative;z-index:1;max-width:680px;margin:24px auto 0;background:rgba(127,29,29,.2);border:1px solid rgba(127,29,29,.4);border-radius:8px;padding:16px 24px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;color:rgba(255,100,100,.9);}
+.grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:20px;max-width:1100px;margin:0 auto;padding:32px 24px 64px;}
+.card{position:relative;cursor:pointer;transition:transform .25s;animation:cardIn .5s both;}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.card:hover{transform:translateY(-6px) scale(1.03);}
+.jersey{position:relative;background:linear-gradient(160deg,var(--maroon) 0%,#5A0F0F 100%);border-radius:12px;overflow:hidden;padding-bottom:4px;box-shadow:0 4px 20px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);}
+.jersey::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:50%;height:22px;background:var(--dark2);border-radius:0 0 40px 40px;z-index:2;}
+.jersey-number{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:90px;color:rgba(255,255,255,.04);pointer-events:none;z-index:1;line-height:1;user-select:none;}
+.jersey-stripes{position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(90deg,var(--gold) 0,var(--gold) 20px,var(--maroon2) 20px,var(--maroon2) 40px);opacity:.7;}
+.card[data-cat="library"] .jersey{background:linear-gradient(160deg,#1E3A5F 0%,#0F2040 100%);}
+.card[data-cat="library"] .jersey-stripes{background:repeating-linear-gradient(90deg,#3B82F6 0,#3B82F6 20px,#1E3A5F 20px,#1E3A5F 40px);}
+.card[data-cat="acadsupport"] .jersey{background:linear-gradient(160deg,#064E3B 0%,#022C22 100%);}
+.card[data-cat="acadsupport"] .jersey-stripes{background:repeating-linear-gradient(90deg,#10B981 0,#10B981 20px,#064E3B 20px,#064E3B 40px);}
+.card[data-cat="pt"] .jersey{background:linear-gradient(160deg,#4C1D95 0%,#2E1065 100%);}
+.card[data-cat="pt"] .jersey-stripes{background:repeating-linear-gradient(90deg,#8B5CF6 0,#8B5CF6 20px,#4C1D95 20px,#4C1D95 40px);}
+.card-photo-wrap{position:relative;width:100%;aspect-ratio:1;overflow:hidden;z-index:2;}
+.card-photo-wrap img{width:100%;height:100%;object-fit:cover;transition:filter .4s,transform .3s;display:block;}
+.card:hover .card-photo-wrap img{transform:scale(1.06);}
+.card.benched .card-photo-wrap img{filter:grayscale(100%) brightness(.35);}
+.card-tip{display:none;position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:var(--dark3);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:12px;line-height:1.5;padding:10px 14px;border-radius:8px;width:190px;text-align:center;z-index:20;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.card-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark3);}
+.card:hover .card-tip{display:block;}
+.card-footer{padding:10px 12px 12px;position:relative;z-index:2;}
+.card-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;line-height:1.1;}
+.card-role{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;}
+.card-section-tag{display:inline-block;margin-top:5px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);}
+.pick-btn{width:100%;margin-top:8px;padding:7px 0;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--gold);color:var(--dark);border:none;border-radius:4px;cursor:pointer;transition:background .2s,transform .1s;}
+.pick-btn:hover{background:var(--gold2);transform:scale(1.02);}
+.pick-btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.3);cursor:not-allowed;transform:none;}
+.card.nominated .jersey{box-shadow:0 0 0 2px var(--gold),0 0 30px rgba(245,158,11,.4),0 4px 20px rgba(0,0,0,.5);}
+.mvp-badge{display:none;position:absolute;top:28px;right:-4px;background:var(--gold);color:var(--dark);font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1px;padding:3px 10px 3px 8px;z-index:10;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,8% 50%);}
+.card.nominated .mvp-badge{display:block;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--dark2);border:1px solid rgba(255,255,255,.08);border-radius:16px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);animation:modalIn .35s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto;}
+@keyframes modalIn{from{opacity:0;transform:scale(.85) translateY(30px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-top{background:linear-gradient(135deg,var(--maroon) 0%,#3D0000 100%);padding:28px;display:flex;gap:18px;align-items:center;position:relative;border-bottom:3px solid var(--gold);}
+.modal-top::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 21px);}
+.modal-avatar{width:72px;height:72px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;position:relative;z-index:1;flex-shrink:0;}
+.modal-info{position:relative;z-index:1;}
+.modal-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.modal-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;line-height:1;}
+.modal-role{font-size:13px;color:rgba(255,255,255,.5);margin-top:2px;}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;}
+.modal-close:hover{background:rgba(255,255,255,.2);color:#fff;}
+.modal-body{padding:22px 28px 4px;}
+.form-field{margin-bottom:18px;}
+.form-label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.form-label .optional-tag{font-family:'Barlow',sans-serif;font-size:10px;font-weight:400;letter-spacing:0;text-transform:none;color:rgba(255,255,255,.3);margin-left:6px;font-style:italic;}
+.form-input{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s;}
+.form-input:focus{border-color:var(--gold);}
+.form-input::placeholder{color:rgba(255,255,255,.2);}
+.form-select{width:100%;background:#1E1E1E;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s;cursor:pointer;}
+.form-select:focus{border-color:var(--gold);}
+.form-textarea{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:#fff;resize:vertical;outline:none;transition:border-color .2s;line-height:1.5;}
+.form-textarea:focus{border-color:var(--gold);}
+.form-textarea::placeholder{color:rgba(255,255,255,.2);}
+.char-counter{text-align:right;font-size:11px;color:var(--muted);margin-top:4px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;transition:color .2s;}
+.char-counter.warn{color:#F59E0B;}
+.char-counter.over{color:#EF4444;}
+.criteria-hint{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.crit-pill{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:100px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);}
+.crit-pill.highlight{border-color:rgba(245,158,11,.4);color:rgba(245,158,11,.8);background:rgba(245,158,11,.06);}
+.form-divider{border:none;border-top:1px solid rgba(255,255,255,.06);margin:18px 0 16px;}
+.star-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;margin-top:8px;transition:border-color .2s;}
+.star-row.error{border-color:#EF4444;box-shadow:0 0 0 3px rgba(239,68,68,.15);}
+.star-row-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.5px;}
+.stars{display:flex;flex-direction:row-reverse;gap:3px;}
+.stars input{display:none;}
+.stars label{font-size:24px;color:rgba(255,255,255,.15);cursor:pointer;transition:color .15s,transform .15s;line-height:1;}
+.stars label:hover,.stars label:hover~label,.stars input:checked~label{color:var(--gold);}
+.stars label:hover{transform:scale(1.2);}
+.star-value-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;color:var(--gold);letter-spacing:1px;min-width:90px;text-align:right;font-style:italic;transition:opacity .2s;}
+.star-value-label.empty{color:rgba(255,255,255,.25);font-style:normal;}
+.attendance-note{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-left:3px solid rgba(245,158,11,.4);border-radius:6px;padding:10px 14px;margin-bottom:18px;}
+.attendance-note-icon{font-size:16px;flex-shrink:0;}
+.attendance-note-text{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5;font-style:italic;}
+.modal-footer{display:flex;gap:10px;padding:0 28px 28px;}
+.btn-cancel{flex:1;padding:12px;background:transparent;border:1.5px solid rgba(255,255,255,.12);border-radius:6px;color:rgba(255,255,255,.4);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .2s;}
+.btn-cancel:hover{border-color:rgba(255,255,255,.3);color:#fff;}
+.btn-submit{flex:2;padding:12px;background:var(--gold);color:var(--dark);border:none;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;transition:all .2s;}
+.btn-submit:hover{background:var(--gold2);transform:scale(1.02);}
+.bench-top{background:linear-gradient(135deg,#1a1a1a 0%,#0a0a0a 100%);padding:32px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;border-bottom:3px solid #EF4444;}
+.bench-top::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 21px);}
+.confetti-piece{position:fixed;z-index:999;pointer-events:none;border-radius:2px;animation:confettiFall 1.8s ease-in forwards;}
+@keyframes confettiFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}
+.stamp-overlay{display:none;position:fixed;inset:0;align-items:center;justify-content:center;z-index:500;pointer-events:none;}
+.stamp-overlay.show{display:flex;}
+.stamp{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,15vw,120px);letter-spacing:6px;color:var(--gold);border:6px solid var(--gold);padding:16px 36px;border-radius:8px;transform:rotate(-15deg) scale(3);opacity:0;text-shadow:0 0 30px rgba(245,158,11,.5);box-shadow:0 0 60px rgba(245,158,11,.3);animation:stampIn .5s cubic-bezier(.34,1.56,.64,1) forwards;}
+@keyframes stampIn{0%{transform:rotate(-15deg) scale(3);opacity:0}60%{transform:rotate(-8deg) scale(1.05);opacity:1}100%{transform:rotate(-8deg) scale(1);opacity:1}}
+@keyframes benchShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px) rotate(-2deg)}40%{transform:translateX(8px) rotate(2deg)}60%{transform:translateX(-6px) rotate(-1deg)}80%{transform:translateX(6px) rotate(1deg)}}
+.card.shaking{animation:benchShake .5s ease;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark3);border:1px solid rgba(245,158,11,.3);color:#fff;padding:14px 24px;border-radius:100px;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:200;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+footer{position:relative;z-index:1;text-align:center;padding:24px;font-size:12px;color:rgba(255,255,255,.2);letter-spacing:1px;border-top:1px solid rgba(255,255,255,.05);font-family:'Barlow Condensed',sans-serif;}
+.criteria-wrap{position:relative;z-index:1;max-width:860px;margin:32px auto 0;padding:0 24px;}
+.criteria-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;cursor:pointer;transition:all .25s;font-family:'Barlow Condensed',sans-serif;}
+.criteria-toggle:hover{border-color:var(--gold);background:rgba(245,158,11,.05);}
+.criteria-toggle-left{display:flex;align-items:center;gap:12px;}
+.criteria-toggle-icon{font-size:18px;}
+.criteria-toggle-text{font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8);}
+.criteria-toggle-sub{font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:1px;}
+.criteria-toggle-arrow{font-size:18px;color:var(--gold);transition:transform .3s;}
+.criteria-toggle-arrow.open{transform:rotate(180deg);}
+.criteria-body{display:none;margin-top:12px;border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden;animation:slideDown .3s ease;}
+.criteria-body.open{display:block;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.criteria-header-row{display:grid;grid-template-columns:2fr 1fr 3fr;background:var(--maroon);padding:10px 18px;}
+.criteria-header-row span{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);}
+.criteria-row{display:grid;grid-template-columns:2fr 1fr 3fr;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);transition:background .2s;}
+.criteria-row:last-child{border-bottom:none;}
+.criteria-row:hover{background:rgba(255,255,255,.03);}
+.criteria-row:nth-child(odd){background:rgba(255,255,255,.02);}
+.criteria-row:nth-child(odd):hover{background:rgba(255,255,255,.04);}
+.crit-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.5px;color:#fff;}
+.crit-pts{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold);text-align:center;}
+.crit-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
+.criteria-footer{background:rgba(127,29,29,.15);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(127,29,29,.3);}
+.criteria-footer-note{font-size:12px;color:var(--muted);font-style:italic;}
+.criteria-footer-total{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);}
+.manual-note{position:relative;z-index:1;max-width:860px;margin:16px auto 0;padding:0 24px;}
+.manual-note-inner{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--gold);border-radius:8px;padding:16px 20px;}
+.manual-note-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.manual-note-text{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;}
+.manual-note-text strong{color:rgba(255,255,255,.9);font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.5px;}
+.manual-note-text em{color:var(--gold);font-style:normal;font-weight:600;}
+</style>
+</head>
+<body>
+
+<script>
+var CONFIG = {
+  nominationStart: new Date(2026, 2, 1),
+  nominationEnd:   new Date(2026, 6, 7),
+  termLabel: "Semester 1 - January to June 2026",
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycby3gmu1myTKqCanbtJCJUfHsHjbUSk5MD-F5NSdxbQPEGqfcKvTh04P5xplUSBsPk3J/exec"
+};
+
+var NO_PHOTO = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23333'/%3E%3Ccircle cx='100' cy='72' r='36' fill='%23555'/%3E%3Cellipse cx='100' cy='165' rx='58' ry='42' fill='%23555'/%3E%3C/svg%3E";
+function getPhoto(img){ return (img && img.length > 30) ? img : NO_PHOTO; }
+
+var STAFF = [
+ {name:"Vic R. Abrigo", role:"Administrative Aide", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1XbbEWjng3ESlnt9rZoLEez2gi8e9_OAK", greeting:"Hi! Ako si Vic Abrigo, ang assigned area sa akin ay ang dating Archery Range.", category:"admin", num:"01"},
+  {name:"Rany L. Baldera", role:"Administrative Aide/Driver", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1Lg_IvNHrX2jXXINQgowMSke3Ek1S-DZp", greeting:"Hi! Ako si Rany, Idol kung tawagin. Isa ako sa mga Driver ng kolehiyo!", category:"admin", num:"02"},
+  {name:"Shulan S. Bartolome", role:"Lifeguard", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1jkjcCOimI_MLuSNzUX674jFUM5AsBpD9", greeting:"Hi! Ako si Shulan. Isa ako sa mga Lifguard ng CHK. Kasalukuyang assigned sa CHK Small Gym.", category:"admin", num:"10"},
+  {name:"Emmanuel Joseph B. Cinco", role:"Administrative Aide", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1uFHV21txJqHl8B_dnCEd0uSw8fWH1akI", greeting:"Hi! Ako si Empong. Lagi akong handa para sa anumang repair, Building Admin ng VTC", category:"admin", num:"11"},
+  {name:"Ricky B. Dejarlo", role:"Administrative Aide", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1fmRBN-Ycr0-assnFY-jbsDAN3Zl25k0-", greeting:"Hi! Ako si Ricky. Kasalukuyang naka assign sa CHK Baseball Field", category:"admin", num:"20"},
+  {name:"Rico B. Tercio", role:"Administrative Aide / Utility Foreman", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1iv5FS5STEGjZh15nyxWcW1wVlRPy7eOc", greeting:"Hi! Ako si Rico B. Tercio.", category:"admin", num:"21"},
+ {name:"Salbert Dela Cruz", role:"Administrative Aide/Driver", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1IB1Ltu-jk7a38drQQap_Akdsiph7bDE6", greeting:"Hi! Ako si Salbert I. Dela Cruz. Isa ako sa mga Driver ng kolehiyo!", category:"admin", num:"22"},
+ {name:"Manasses A. Romero, Jr.", role:"Lifeguard", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/104vI6NgeXBW55vzxBbo5qb2Egl_VSo0e", greeting:"Hi! Ako si Jhong. Kasalukuyang assigned na Building Admin sa Tennis Court", category:"admin", num:"23"},
+ {name:"Jenneth N. Clavano", role:"Administrative Aide", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1CRYMjlpdRADT9BssCbUJl3QR3dfovQF2", greeting:"Hi! Ako si Jenneth. Kasalukuyang assigned sa Ylanan Gym", category:"admin", num:"24"},
+ {name:"Lyn A. Montesclaros", role:"Administrative Aide", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1UzroC74QR69bLA70C8RBemFhBkMt3j5o", greeting:"Hi! Ako si Lyn. Kasalukuyang assigned sa Varsity Training Center", category:"admin", num:"25"},
+ {name:"Leoncio S. Cadag, Jr.", role:"Liaison Officer", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1KAGVi8CSYVCNPKD3PW5dVZ4kyn8jt-Gf", greeting:"Hi! Ako si Jhayr. Kasalukuyang assigned bilang Messenger at Assistant sa Admin Office", category:"admin", num:"26"},
+ {name:"Rommel T. Lagahit", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/11xgXssctsIjP7yjHeSWADW_TZRHJE9tg", greeting:"Hi! Ako si Rommel. Katuwang ni Empong sa pagkukumpuni", category:"admin", num:"27"},
+ {name:"Ralph Mathew D. Mojeres", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1Vf5fPtoYzrWtf7UXuJqM6zX5nXHzU8AK", greeting:"Hi! Ako si Mathew. Kasalukuyang assigned bilang Varsity Equipment Technician", category:"admin", num:"28"},
+ {name:"Kristine Mae U. Supilanas", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1fa6OzbLkAg_oZylpJR34wW0Ypa6-I1Ee", greeting:"Hi! Ako si Tintin. Kasalukuyang assigned sa AIT", category:"admin", num:"29"},
+  {name:"Maggie May I. Manjares", role:"Head Librarian", section:"Library Section", img:"https://lh3.googleusercontent.com/d/1XIPy1Mcg3Dqy8aFuAtN5hoG979kTUNx8", greeting:"Hi! Ako si Maggie. Nandito ako para tulungan kayong mahanap ang kailangan ninyo.", category:"library", num:"45"},
+  {name:"Marvin B. Mulle", role:"Librarian", section:"Library Section", img:"https://lh3.googleusercontent.com/d/1__HcRYnWMZsp30-Nu4pBk6-n1nAnKyBY", greeting:"Hi! Ako si Marvin. Bahala sa lahat ng libro at resources ng CHK library.", category:"library", num:"46"},
+  {name:"Nica Neri C. Marquez", role:"Librarian", section:"Library Section", img:"https://lh3.googleusercontent.com/d/1IPP8TjeA6zXpJKAqSp3Nz3Gn3i5VSGhY", greeting:"Hi! Ako si Nica. Bahala sa lahat ng libro at resources ng CHK library.", category:"library", num:"47"},
+  {name:"Rosalia B. Espiritu", role:"Student Records Evaluator", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1OEz3lIaR18545calB3LFTlMmroYxjaWx", greeting:"Hi! Ako si Jeng. Tinutulungan ko ang mga estudyante at faculty sa kanilang mga pangangailangan.", category:"acadsupport", num:"48"},
+  {name:"Clementina DV. Dela Peña", role:"Administrative Assistant", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1gSNC9K7fMBJTSBjY_Kc9k8SsAcATwBVX", greeting:"Hi! Ako si Clem. Kasama ninyo sa bawat hakbang ng proseso.", category:"acadsupport", num:"49"},
+  {name:"Gleziel M. Aparato", role:"Administrative Aide", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1x-VOw40az028sNVwJy38lYUfftww7d6n", greeting:"Hi! Ako si Gleize. Kasama ninyo sa bawat hakbang ng proseso.", category:"acadsupport", num:"50"},
+  {name:"Hanzel Allan C. Cruz", role:"Senior Office Assistant", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1J4zYzVnyBm3q-UYsr1vWl23glea4JQIH", greeting:"Hi! Ako si Hanz. Kasama ninyo sa bawat hakbang ng proseso.", category:"acadsupport", num:"51"},
+  {name:"Paolo F. Patawaran", role:"Senior Office Assistant", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1wECB6K87Jx_Pbu4Bn-JjFRvMEDmnnaNW", greeting:"Hi! Ako si Paolo. Lord, iparamdam mo naman na mahal mo ko!.", category:"acadsupport", num:"52"},
+  {name:"John Jake A. Gallardo", role:"Senior Office Aide", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1FXa7oK4QDFJ7hql9-JzPOECoNCRUSSF5", greeting:"Hi! Ako si JJ.Waiting lang sa paglipat ni Papa P.", category:"acadsupport", num:"53"},
+  {name:"Patricia Moira R. Parungao", role:"Head Physical Therapist", section:"PT Section", img:"https://lh3.googleusercontent.com/d/1cWP17x6MiLwlUQnvbcsL7oBoPmsfTINx", greeting:"Hi! Ako si PT Moira. Narito ako para sa kalusugan at wellness ng ating komunidad.", category:"pt", num:"54"},
+  {name:"Roel Immanuel Y. Antero", role:"Physical Therapist", section:"PT Section", img:"https://lh3.googleusercontent.com/d/1OWRCcCXMkuJjpZB4p0gHlnw4XTUz86Tt", greeting:"Hi! Ako si PT Imman. Tumutulong ako sa mga pasyente at kliyente ng PT Section.", category:"pt", num:"55"},
+  {name:"James Lester P. Edrozo", role:"Administrative Officer V", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1EWAO8_CYixR3pQHYuWpXBS9wteZIoIcI", greeting:"Hi! Ako si James, ang isa sa mga AO ng kolehiyo. Anong meron dito?!", category:"admin", num:"00", ineligible:true},
+  {name:"Roque C. Tapel", role:"Administrative Officer I", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1NGkT2vq5pLYUyHdnAAI0CKjzy-JSKHIh", greeting:"Hi! Ako si Roque, mas kilala bilang TAPS. Isa ako sa mga AO ng kolehiyo", category:"admin", num:"00", ineligible:true},
+  {name:"Vivien T. Matias", role:"Administrative Officer I", section:"Academic Support", img:"https://lh3.googleusercontent.com/d/1o3haWRKeU4RU3UoXAR50jLUw_uSJQ0Ph", greeting:"Hi! Ako si Vienne. Isa sa mga AO ng kolehiyo!", category:"acadsupport", num:"00", ineligible:true},
+  {name:"Joel E. Agrava", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1IZkh8fTPEz5D0wEyXGKsArI6We2ei6az", greeting:"Hi! Ako si Master Rapper Joe; E. Isa sa mga kuya ng CHk. Assigned ako sa Archery Range.", category:"admin", num:"56"},
+  {name:"Rachelle S. Alejandro", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1JeBpFPl8l4x3vdKQL0CCX_DaPTaPhK8G", greeting:"Hi! Ako si Rachelle. Assigned ako sa CHK Public CR at SOLAIRE Classrooms", category:"admin", num:"57"},
+  {name:"Jose Elmer S. Azul", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1PdK8fvwJdKDEAmtRus2DEPcsM17A7Fsy", greeting:"Hi! Ako si Elmer. Assigned ako sa CHK Class sa CSWD at SURP Classrooms", category:"admin", num:"57"},
+  {name:"Ricky M. Baydal", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1tsGZGbkQoYT5WdYneNUZj7wPbwTb9Fog", greeting:"Hi! Ako si Ricky D. Isa ako sa Striker", category:"admin", num:"57"},
+  {name:"Brian Edward L. Britannia", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1NAkxOyKgFcBTS91_iIGUqUlt5NV4YBEc", greeting:"Hi! Ako si Edward . Assigned ako sa Isa ako sa Football Field", category:"admin", num:"57"},
+  {name:"Roberto I. Cruz", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1VnOWgOx6tO3J_p9PNm-0u1_bNnWZ9s0W", greeting:"Hi! Ako si Onyok . Assigned ako sa Ylanan Gym", category:"admin", num:"57"},
+  {name:"Angeline M. Magsalay", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1MzqHB_aarunL5BfQWee9dKz1YVGhU0hb", greeting:"Hi! Ako si Angie . Assigned ako Varsity Training Center", category:"admin", num:"57"},
+  {name:"Rodrigo Ginay", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/18i0hRVYH0stN8IFE7ibM06xsEc_NOJfH", greeting:"Hi! Ako si Drigo . Assigned ako sa Small Gym", category:"admin", num:"57"},
+  {name:"Richard D. Mora", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/", greeting:"Hi! Ako si Richard . Assigned ako sa Tennis Court", category:"admin", num:"57"},
+  {name:"Sharon S. Pedrosa", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1QjIwrvatXVuhPfCRmEwxfNtXlqZXvucy", greeting:"Hi! Ako si Sharon . Assigned ako sa Grandstand", category:"admin", num:"57"},
+  {name:"Benvin G. Quiña", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/187atQ5oYXsT6KZ1FoHo0mFkoPzfCfDfz", greeting:"Hi! Ako si Benvin . Foreman ako ni Empong at Lemmor", category:"admin", num:"57"},
+  {name:"Crisanto I. Villar", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1FJHEW1DO2uCS0Hp7m_LJmxb7JA5t52wz", greeting:"Hi! Ako si Santoy . Assigned ako sa CHK Oval", category:"admin", num:"57"},
+  {name:"Rina A. Castor", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1yG6fCxFgLloGvpS1hOAL02wHBqXmkjvW", greeting:"Hi! Ako si Rina . Assigned ako sa Tennis Court", category:"admin", num:"57"},
+  {name:"Christian J. Bero", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1sa0531kcUPg9OOtBJqIvD2q3tmO0K_AZ", greeting:"Hi! Ako si Buknoy . Assigned ako sa Ylanan Gym", category:"admin", num:"57"},
+  {name:"Ezekiel Rico E. Nato", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1Rsr5p9sPuolphjyjNTghfowYRPvxc0b5", greeting:"Hi! Ako si Wally . Isa ako sa Striker", category:"admin", num:"57"},
+  {name:"Jocelyn L. Salamanca", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1HJDaw_BmHhSrWcds6R_2R6-9dZQwn8uF", greeting:"Hi! Ako si Joyjoy . Assigned ako sa Grandstand", category:"admin", num:"57"},
+  {name:"Elger C. Valdenebro", role:"Utility", section:"Administrative Section", img:"https://lh3.googleusercontent.com/d/1AkXrIiNgn5XfhhsYw5858Scw4E6FHp_g", greeting:"Hi! Ako si Toto . Assigned ako sa Varsity Training Center", category:"admin", num:"57"},
+];
+
+var TABS = [
+  {key:"all", label:"All Staff"},
+  {key:"admin", label:"Admin Section"},
+  {key:"library", label:"Library"},
+  {key:"acadsupport", label:"Acad Support"},
+  {key:"pt", label:"PT Section"}
+];
+</script>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">College of Human Kinetics - UP Diliman</div>
+  <h1><span class="outline">CHK</span> <span class="accent">MVP</span><br>of the Semester</h1>
+  <p class="hero-subtitle">A semester recognition award for all CHK non-teaching staff, regardless of employment status</p>
+  <div class="status-pill">
+    <div class="dot" id="statusDot"></div>
+    <span id="statusText">Loading...</span>
+  </div>
+</div>
+
+<!-- TERMS -->
+<div class="terms-row">
+  <div class="term-badge" id="sem1">Semester 1 - Jan to Jun</div>
+  <div class="term-badge" id="sem2">Semester 2 - Jul to Dec</div>
+</div>
+
+<!-- CRITERIA COLLAPSIBLE -->
+<div class="criteria-wrap">
+  <button class="criteria-toggle" onclick="toggleCriteria()">
+    <div class="criteria-toggle-left">
+      <span class="criteria-toggle-icon">🏆</span>
+      <div>
+        <div class="criteria-toggle-text">Nomination Criteria & Description</div>
+        <div class="criteria-toggle-sub">What makes a CHK MVP? Click to learn more.</div>
+      </div>
+    </div>
+    <span class="criteria-toggle-arrow" id="criteriaArrow">▾</span>
+  </button>
+  <div class="criteria-body" id="criteriaBody">
+    <div class="criteria-header-row">
+      <span>Criterion</span>
+      <span style="text-align:center;">Weight</span>
+      <span>Description</span>
+    </div>
+    <div class="criteria-row">
+      <div class="crit-name">Excellence in Work Performance</div>
+      <div class="crit-pts">20</div>
+      <div class="crit-desc">Consistently delivers high-quality, accurate, and reliable work in assigned responsibilities.</div>
+    </div>
+    <div class="criteria-row">
+      <div class="crit-name">Initiative and Problem-Solving</div>
+      <div class="crit-pts">20</div>
+      <div class="crit-desc">Demonstrates resourcefulness by proactively addressing challenges and improving processes beyond regular duties.</div>
+    </div>
+    <div class="criteria-row">
+      <div class="crit-name">Teamwork and Collaboration</div>
+      <div class="crit-pts">15</div>
+      <div class="crit-desc">Works effectively with colleagues and contributes to a supportive and cooperative workplace environment.</div>
+    </div>
+    <div class="criteria-row">
+      <div class="crit-name">Attendance and Dependability</div>
+      <div class="crit-pts">15</div>
+      <div class="crit-desc">Maintains consistent attendance, punctuality, and accountability in fulfilling responsibilities.</div>
+    </div>
+    <div class="criteria-row">
+      <div class="crit-name">Professionalism and Work Ethic</div>
+      <div class="crit-pts">10</div>
+      <div class="crit-desc">Demonstrates integrity, respect, dedication, and a positive attitude toward work and colleagues.</div>
+    </div>
+    <div class="criteria-row">
+      <div class="crit-name">Performance Rating<br><span style="font-size:11px;font-weight:400;color:rgba(255,255,255,.45)">IPCR / PES / COS Target</span></div>
+      <div class="crit-pts">20</div>
+      <div class="crit-desc">Based on the nominee&#x2019;s most recent CHK performance evaluation rating, using a uniform IPCR/PES-format evaluation applied to all staff regardless of employment status.</div>
+    </div>
+    <div class="criteria-footer">
+      <span class="criteria-footer-note">Final selection is made by the Awards Committee after the nomination period closes.</span>
+      <span class="criteria-footer-total">TOTAL: 100 PTS</span>
+    </div>
+  </div>
+</div>
+
+<!-- MANUAL NOMINATION NOTE -->
+<div class="manual-note">
+  <div class="manual-note-inner">
+    <span class="manual-note-icon">📋</span>
+    <div class="manual-note-text">
+      <strong>Prefer to nominate manually?</strong><br>
+      If you are unable to submit online, you may approach <em>the CHK Administrative Section Office</em> to submit your nomination in person. Manual nominations are accepted during the same nomination period.
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs" id="tabsContainer"></div>
+
+<!-- CLOSED BANNER -->
+<div style="position:relative;z-index:1;padding:20px 24px 0;max-width:1100px;margin:0 auto;">
+  <div class="closed-banner" id="closedBanner">NOMINATIONS CLOSED — Opens the first week after each semester ends</div>
+</div>
+
+<!-- SECTION HEADER -->
+<div class="section-header">
+  <h2>PICK YOUR <span>MVP</span></h2>
+  <p>Hover over a card to see their message. Click NOMINATE to cast your vote.</p>
+</div>
+
+<!-- GRID -->
+<div class="grid" id="staffGrid"></div>
+
+<!-- NOMINATION MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img src="" alt="" class="modal-avatar" id="modalAvatar">
+      <div class="modal-info">
+        <div class="modal-label">Your MVP Nominee</div>
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-role" id="modalRole"></div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-field">
+        <label class="form-label">Iyong Pangalan</label>
+        <input type="text" id="nominatorName" class="form-input" placeholder="Ilagay ang iyong buong pangalan...">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email Address <span style="font-family:'Barlow',sans-serif;font-size:10px;font-weight:400;letter-spacing:0;text-transform:none;color:rgba(255,255,255,.35);margin-left:4px;">— para sa one submission per person rule</span></label>
+        <input type="email" id="nominatorEmail" class="form-input" placeholder="username@up.edu.ph o personal email...">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Ikaw ay isang...</label>
+        <select id="nominatorClass" class="form-select">
+          <option value="" disabled selected style="color:#888;">Piliin ang iyong classification...</option>
+          <option value="Faculty">Faculty</option>
+          <option value="Staff">Staff</option>
+          <option value="Student">Student</option>
+        </select>
+      </div>
+      <hr class="form-divider">
+      <div class="form-field">
+        <label class="form-label">Kahusayan sa Trabaho</label>
+        <div class="criteria-hint">
+          <span class="crit-pill highlight">✦ Performance</span>
+          <span class="crit-pill highlight">✦ Initiative</span>
+        </div>
+        <textarea id="reason1" class="form-textarea" rows="3" maxlength="500"
+          placeholder="Batay sa iyong obserbasyon, ibigay ang isang halimbawa ng kahusayan o inisyatibo niya sa trabaho ngayong semester..."
+          oninput="updateCounter(this, 'counter1', 500)"></textarea>
+        <div class="char-counter" id="counter1">0 / 500</div>
+        <div class="star-row" id="starRow1">
+          <span class="star-row-label">I-rate ang Performance &amp; Initiative:</span>
+          <div class="stars">
+            <input type="radio" name="rating1" id="r1s5" value="5"><label for="r1s5" title="5">★</label>
+            <input type="radio" name="rating1" id="r1s4" value="4"><label for="r1s4" title="4">★</label>
+            <input type="radio" name="rating1" id="r1s3" value="3"><label for="r1s3" title="3">★</label>
+            <input type="radio" name="rating1" id="r1s2" value="2"><label for="r1s2" title="2">★</label>
+            <input type="radio" name="rating1" id="r1s1" value="1"><label for="r1s1" title="1">★</label>
+          </div>
+          <span class="star-value-label empty" id="ratingLabel1">Pumili ng rating</span>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Pakikiisa at Propesyonalismo</label>
+        <div class="criteria-hint">
+          <span class="crit-pill highlight">✦ Teamwork</span>
+          <span class="crit-pill highlight">✦ Work Ethic</span>
+        </div>
+        <textarea id="reason2" class="form-textarea" rows="3" maxlength="500"
+          placeholder="Batay sa iyong obserbasyon, paano siya nakikiisa sa team at nagpapakita ng magandang asal sa trabaho?..."
+          oninput="updateCounter(this, 'counter2', 500)"></textarea>
+        <div class="char-counter" id="counter2">0 / 500</div>
+        <div class="star-row" id="starRow2">
+          <span class="star-row-label">I-rate ang Teamwork &amp; Propesyonalismo:</span>
+          <div class="stars">
+            <input type="radio" name="rating2" id="r2s5" value="5"><label for="r2s5" title="5">★</label>
+            <input type="radio" name="rating2" id="r2s4" value="4"><label for="r2s4" title="4">★</label>
+            <input type="radio" name="rating2" id="r2s3" value="3"><label for="r2s3" title="3">★</label>
+            <input type="radio" name="rating2" id="r2s2" value="2"><label for="r2s2" title="2">★</label>
+            <input type="radio" name="rating2" id="r2s1" value="1"><label for="r2s1" title="1">★</label>
+          </div>
+          <span class="star-value-label empty" id="ratingLabel2">Pumili ng rating</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">CANCEL</button>
+      <button class="btn-submit" id="submitBtn" onclick="submitNomination()">SUBMIT VOTE</button>
+    </div>
+  </div>
+</div>
+
+<!-- BANGKO MODAL -->
+<div class="modal-overlay" id="benchModal">
+  <div class="modal" style="max-width:380px;">
+    <div class="bench-top">
+      <button class="modal-close" onclick="closeBenchModal()">✕</button>
+      <div style="font-size:56px;margin-bottom:12px;position:relative;z-index:1;">&#x1FA91;</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:#EF4444;position:relative;z-index:1;margin-bottom:8px;">BANGKO!</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:17px;letter-spacing:1px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;z-index:1;">Sorry, hindi pwede ma-nominate si <span id="benchName" style="color:var(--gold);font-weight:700;"></span>!<br>Bangko ang bata mo —<br>hindi pwede maging MVP!</div>
+    </div>
+    <div style="padding:20px 28px 24px;text-align:center;">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;">Isa siya sa mga nag-manage ng nomination,<br>kaya siya ay nasa bangko! so sad, ayos lang yan</p>
+      <button onclick="closeBenchModal()" style="width:100%;padding:12px;background:var(--maroon);color:#fff;border:none;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;">OKAY SIGE</button>
+    </div>
+  </div>
+</div>
+
+<div class="stamp-overlay" id="stampOverlay"><div class="stamp">NOMINATED!</div></div>
+<div class="toast" id="toast"></div>
+
+<footer>CHK MVP OF THE SEMESTER — COLLEGE OF HUMAN KINETICS — UNIVERSITY OF THE PHILIPPINES DILIMAN</footer>
+
+<script>
+var isOpen = false;
+var nomineeIdx = null;
+var COLORS = ['#F59E0B','#EF4444','#3B82F6','#10B981','#8B5CF6','#F97316','#fff'];
+var STAR_LABELS = {1:'1 - Kailangan pang mapabuti', 2:'2 - Katamtaman', 3:'3 - Mahusay', 4:'4 - Napakahusay', 5:'5 - Nangunguna'};
+
+function initStarListeners() {
+  ['1','2'].forEach(function(n) {
+    for (var v = 1; v <= 5; v++) {
+      (function(val, num) {
+        var el = document.getElementById('r' + num + 's' + val);
+        if (el) el.addEventListener('change', function() {
+          var lbl = document.getElementById('ratingLabel' + num);
+          lbl.textContent = STAR_LABELS[val];
+          lbl.classList.remove('empty');
+          document.getElementById('starRow' + num).classList.remove('error');
+        });
+      })(v, n);
+    }
+  });
+}
+
+function resetStars() {
+  document.querySelectorAll('input[name="rating1"], input[name="rating2"]').forEach(function(r){ r.checked = false; });
+  ['1','2'].forEach(function(n) {
+    var lbl = document.getElementById('ratingLabel' + n);
+    lbl.textContent = 'Pumili ng rating';
+    lbl.classList.add('empty');
+    document.getElementById('starRow' + n).classList.remove('error');
+  });
+}
+
+function getStarValue(name) {
+  var sel = document.querySelector('input[name="' + name + '"]:checked');
+  return sel ? parseInt(sel.value) : null;
+}
+
+function updateCounter(el, counterId, max) {
+  var len = el.value.length;
+  var counter = document.getElementById(counterId);
+  counter.textContent = len + ' / ' + max;
+  counter.classList.remove('warn', 'over');
+  if (len >= max) counter.classList.add('over');
+  else if (len >= max * 0.85) counter.classList.add('warn');
+}
+
+function toggleCriteria() {
+  var body = document.getElementById('criteriaBody');
+  var arrow = document.getElementById('criteriaArrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+function checkPeriod() {
+  var now = new Date();
+  isOpen = now >= CONFIG.nominationStart && now <= CONFIG.nominationEnd;
+  var dot = document.getElementById('statusDot');
+  var txt = document.getElementById('statusText');
+  var banner = document.getElementById('closedBanner');
+  var m = now.getMonth() + 1;
+  // Semester 1: Jan–Jun (months 1–6), Semester 2: Jul–Dec (months 7–12)
+  if (m >= 1 && m <= 6) {
+    document.getElementById('sem1').classList.add('active');
+  } else {
+    document.getElementById('sem2').classList.add('active');
+  }
+  if (isOpen) {
+    dot.classList.remove('off');
+    var end = CONFIG.nominationEnd.toLocaleDateString('en-PH', {month:'long', day:'numeric', year:'numeric'});
+    txt.textContent = 'NOMINATIONS OPEN — Closes ' + end;
+    banner.style.display = 'none';
+  } else {
+    dot.classList.add('off');
+    txt.textContent = CONFIG.termLabel + ' — Nominations Closed';
+    banner.style.display = 'block';
+  }
+}
+
+function buildTabs() {
+  var wrap = document.getElementById('tabsContainer');
+  wrap.innerHTML = '';
+  for (var i = 0; i < TABS.length; i++) {
+    (function(t, idx) {
+      var btn = document.createElement('button');
+      btn.className = 'tab' + (idx === 0 ? ' active' : '');
+      btn.textContent = t.label;
+      btn.onclick = function() { switchTab(t.key, btn); };
+      wrap.appendChild(btn);
+    })(TABS[i], i);
+  }
+}
+
+function buildGrid(filter) {
+  var grid = document.getElementById('staffGrid');
+  grid.innerHTML = '';
+  var list = [];
+  for (var i = 0; i < STAFF.length; i++) {
+    if (filter === 'all' || STAFF[i].category === filter) list.push(STAFF[i]);
+  }
+  for (var j = 0; j < list.length; j++) {
+    (function(s, pos) {
+      var ri = STAFF.indexOf(s);
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('data-idx', ri);
+      card.setAttribute('data-cat', s.category);
+      card.style.animationDelay = (pos * 0.045) + 's';
+      var photo = getPhoto(s.img);
+      var btnLabel = isOpen ? '&#9733; NOMINATE' : 'CLOSED';
+      var btnDisabled = isOpen ? '' : ' disabled';
+      var html = '';
+      html += '<div class="jersey">';
+      html += '<div class="jersey-stripes"></div>';
+      html += '<div class="jersey-number">' + s.num + '</div>';
+      html += '<div class="card-photo-wrap">';
+      html += '<img src="' + photo + '" alt="' + s.name + '" loading="lazy" onerror="this.src=window.NO_PHOTO">';
+      html += '</div>';
+      html += '<div class="mvp-badge">MVP</div>';
+      html += '</div>';
+      html += '<div class="card-tip">' + s.greeting + '</div>';
+      html += '<div class="card-footer">';
+      html += '<div class="card-name">' + s.name + '</div>';
+      html += '<div class="card-role">' + s.role + '</div>';
+      html += '<div class="card-section-tag">' + s.section + '</div>';
+      html += '<button class="pick-btn"' + btnDisabled + ' onclick="openModal(' + ri + ', event)">' + btnLabel + '</button>';
+      html += '</div>';
+      card.innerHTML = html;
+      grid.appendChild(card);
+    })(list[j], j);
+  }
+}
+
+function switchTab(cat, btn) {
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  btn.classList.add('active');
+  buildGrid(cat);
+}
+
+function openModal(idx, e) {
+  if (e) e.stopPropagation();
+  if (!isOpen) return;
+  var s = STAFF[idx];
+  if (!s) return;
+  if (s.ineligible) {
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+      if (parseInt(cards[i].getAttribute('data-idx')) === idx) {
+        cards[i].classList.remove('shaking');
+        void cards[i].offsetWidth;
+        cards[i].classList.add('shaking');
+        setTimeout(function(c) { return function() { c.classList.remove('shaking'); }; }(cards[i]), 600);
+      }
+    }
+    document.getElementById('benchName').textContent = s.name;
+    document.getElementById('benchModal').classList.add('open');
+    return;
+  }
+  var photo = getPhoto(s.img);
+  nomineeIdx = idx;
+  document.getElementById('modalAvatar').src = photo;
+  document.getElementById('modalName').textContent = s.name;
+  document.getElementById('modalRole').textContent = s.role + ' - ' + s.section;
+  document.getElementById('nominatorName').value = '';
+  document.getElementById('nominatorEmail').value = '';
+  document.getElementById('nominatorClass').value = '';
+  document.getElementById('reason1').value = '';
+  document.getElementById('reason2').value = '';
+  document.getElementById('counter1').textContent = '0 / 500';
+  document.getElementById('counter1').className = 'char-counter';
+  document.getElementById('counter2').textContent = '0 / 500';
+  document.getElementById('counter2').className = 'char-counter';
+  resetStars();
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  nomineeIdx = null;
+}
+
+function closeBenchModal() {
+  document.getElementById('benchModal').classList.remove('open');
+}
+
+function getSubmittedEmails() {
+  try {
+    var raw = localStorage.getItem('chk_mvp_submitted_' + CONFIG.termLabel);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+
+function markEmailSubmitted(email) {
+  try {
+    var list = getSubmittedEmails();
+    list.push(email.toLowerCase().trim());
+    localStorage.setItem('chk_mvp_submitted_' + CONFIG.termLabel, JSON.stringify(list));
+  } catch(e) {}
+}
+
+function hasAlreadySubmitted(email) {
+  var list = getSubmittedEmails();
+  return list.indexOf(email.toLowerCase().trim()) !== -1;
+}
+
+function highlightError(id) {
+  var el = document.getElementById(id);
+  el.style.borderColor = '#EF4444';
+  el.style.boxShadow = '0 0 0 3px rgba(239,68,68,.15)';
+  setTimeout(function() {
+    el.style.borderColor = 'rgba(255,255,255,.1)';
+    el.style.boxShadow = 'none';
+  }, 2000);
+}
+
+function submitNomination() {
+  var nominatorName = document.getElementById('nominatorName').value.trim();
+  var nominatorEmail = document.getElementById('nominatorEmail').value.trim();
+  var nominatorClass = document.getElementById('nominatorClass').value;
+  var reason1 = document.getElementById('reason1').value.trim();
+  var reason2 = document.getElementById('reason2').value.trim();
+  var valid = true;
+
+  if (nominatorName.length < 3) { highlightError('nominatorName'); valid = false; }
+
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!nominatorEmail || !emailRegex.test(nominatorEmail)) {
+    highlightError('nominatorEmail');
+    showToast('Mangyaring maglagay ng valid na email address.');
+    valid = false;
+  } else if (hasAlreadySubmitted(nominatorEmail)) {
+    highlightError('nominatorEmail');
+    showToast('Isang nomination lang ang pinapayagan bawat email address.');
+    valid = false;
+  }
+
+  if (!nominatorClass) { highlightError('nominatorClass'); valid = false; }
+
+  if (reason1.length < 20) {
+    highlightError('reason1');
+    if (valid) showToast('Mangyaring sagutin ang lahat ng tanong (min. 20 characters).');
+    valid = false;
+  }
+  if (reason2.length < 20) {
+    highlightError('reason2');
+    if (valid) showToast('Mangyaring sagutin ang lahat ng tanong (min. 20 characters).');
+    valid = false;
+  }
+
+  var rating1 = getStarValue('rating1');
+  var rating2 = getStarValue('rating2');
+  if (!rating1) {
+    document.getElementById('starRow1').classList.add('error');
+    if (valid) showToast('Mangyaring mag-rate sa bawat criteria.');
+    valid = false;
+  }
+  if (!rating2) {
+    document.getElementById('starRow2').classList.add('error');
+    if (valid) showToast('Mangyaring mag-rate sa bawat criteria.');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  var s = STAFF[nomineeIdx];
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.textContent = 'SUBMITTING...';
+  submitBtn.disabled = true;
+
+  var payload = {
+    nominatorName: nominatorName,
+    nominatorEmail: nominatorEmail,
+    classification: nominatorClass,
+    nomineeName: s.name,
+    nomineeSection: s.section,
+    ratingPerformance: rating1 + ' - ' + STAR_LABELS[rating1],
+    ratingTeamwork: rating2 + ' - ' + STAR_LABELS[rating2],
+    reasonPerformance: reason1,
+    reasonTeamwork: reason2,
+    term: CONFIG.termLabel
+  };
+
+  google.script.run
+    .withSuccessHandler(function() {
+      markEmailSubmitted(nominatorEmail);
+      onSuccess(s, nominatorName);
+      submitBtn.textContent = 'SUBMIT VOTE';
+      submitBtn.disabled = false;
+    })
+    .withFailureHandler(function() {
+      markEmailSubmitted(nominatorEmail);
+      onSuccess(s, nominatorName);
+      submitBtn.textContent = 'SUBMIT VOTE';
+      submitBtn.disabled = false;
+    })
+    .saveNomination(payload);
+}
+
+function onSuccess(s, nominatorName) {
+  var cards = document.querySelectorAll('.card');
+  for (var i = 0; i < cards.length; i++) {
+    if (parseInt(cards[i].getAttribute('data-idx')) === nomineeIdx) cards[i].classList.add('nominated');
+  }
+  closeModal();
+  launchConfetti();
+  showStamp();
+  showToast('Boto para kay ' + s.name + ' — Salamat, ' + nominatorName + '!');
+}
+
+function launchConfetti() {
+  for (var i = 0; i < 70; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var p = document.createElement('div');
+        p.className = 'confetti-piece';
+        p.style.left = (Math.random() * 100) + 'vw';
+        p.style.top = '-10px';
+        p.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+        p.style.width = (6 + Math.random() * 8) + 'px';
+        p.style.height = (6 + Math.random() * 8) + 'px';
+        p.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        p.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+        p.style.animationDelay = (Math.random() * 0.4) + 's';
+        document.body.appendChild(p);
+        setTimeout(function() { if (p.parentNode) p.parentNode.removeChild(p); }, 2600);
+      }, i * 18);
+    })(i);
+  }
+}
+
+function showStamp() {
+  var ov = document.getElementById('stampOverlay');
+  ov.classList.add('show');
+  setTimeout(function() { ov.classList.remove('show'); }, 1600);
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.getElementById('benchModal').addEventListener('click', function(e) {
+  if (e.target === this) closeBenchModal();
+});
+
+checkPeriod();
+buildTabs();
+buildGrid('all');
+initStarListeners();
+</script>
+</body>
+</html>
